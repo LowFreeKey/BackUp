@@ -19,7 +19,6 @@ public type essayEntry = {
         reviewTimes : Nat32;
         tokenToPay : Nat;
         text : Text;
-        userId : Principal;
     };
 
 }

@@ -21,12 +21,11 @@ export class SubmitEssayComponent implements OnInit {
     this.router.navigate(['../my-profile'], { relativeTo: this.route });
   }
   changeRouteSkyboard(){
-    this.userId = this.helloService.getUserId();
+    this.userId = this.helloService.userId;
     this.EssayObj = {
       title : 'string',
       topic : 'string',
       wordCount : 9,
-      userId : this.userId,
       text : 'string',
       tokenToPay : 3,
       reviewTimes : 4,

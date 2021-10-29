@@ -3,25 +3,25 @@ export interface EssayEntry {
   'title' : string,
   'topic' : string,
   'wordCount' : number,
-  'userId' : Principal,
   'text' : string,
-  'tokenToPay' : number,
+  'tokenToPay' : bigint,
   'reviewTimes' : number,
 }
 export interface UserEntry {
   'userName' : string,
-  'token' : number,
+  'token' : bigint,
   'myEssays' : Array<bigint>,
   'userRating' : number,
-  'reviewingEssay' : Array<bigint>,
+  'reviewingEssay' : bigint,
 }
 export interface _SERVICE {
   'addReviewingEssay' : (arg_0: bigint) => Promise<undefined>,
-  'createEssay' : (arg_0: EssayEntry) => Promise<undefined>,
+  'createEssay' : (arg_0: EssayEntry) => Promise<boolean>,
   'createProfile' : (arg_0: UserEntry) => Promise<boolean>,
   'getAllEssays' : () => Promise<Array<[bigint, EssayEntry]>>,
   'getEssay' : (arg_0: bigint) => Promise<[] | [EssayEntry]>,
   'getUserEntrybyPrincipal' : () => Promise<[] | [UserEntry]>,
   'logIn' : () => Promise<boolean>,
+  'pay' : (arg_0: UserEntry, arg_1: bigint) => Promise<UserEntry>,
   'whoami' : () => Promise<Principal>,
 }

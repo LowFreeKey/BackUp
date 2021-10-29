@@ -7,6 +7,7 @@ const ic_hello = require('src/declarations/hello').hello;
   providedIn: 'root'
 })
 export class IcHelloService {
+  public userId!:any;
 
   constructor() { }
   public async createEssay(essay:Essay){
@@ -15,8 +16,8 @@ export class IcHelloService {
   public async createProfile( userData:User){
       return await ic_hello.createProfile( userData);
   }
-  public async test(){
-    return await ic_hello.createEssayInfo();
+  public async getUsers(){
+    return await ic_hello.getUserEntrybyPrincipal();
   }
   public async getUserId(){
     return await ic_hello.whoami();

@@ -1,10 +1,7 @@
-export class User {
-    constructor(
+export interface User {
         userName : string,
         token : number,
         myEssays : Array<number>,
         userRating : number,
-        reviewingEssay : Array<number>,
-    ){}
-    
+        reviewingEssay : number,
 }

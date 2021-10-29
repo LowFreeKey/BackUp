@@ -1,8 +1,8 @@
 type UserEntry = 
  record {
    myEssays: vec nat;
-   reviewingEssay: vec nat;
-   token: nat32;
+   reviewingEssay: nat;
+   token: nat;
    userName: text;
    userRating: nat32;
  };
@@ -11,14 +11,13 @@ type EssayEntry =
    reviewTimes: nat32;
    "text": text;
    title: text;
-   tokenToPay: nat32;
+   tokenToPay: nat;
    topic: text;
-   userId: principal;
    wordCount: nat32;
  };
 service : {
   addReviewingEssay: (nat) -> () oneway;
-  createEssay: (EssayEntry) -> ();
+  createEssay: (EssayEntry) -> (bool);
   createProfile: (UserEntry) -> (bool);
   getAllEssays: () -> (vec record {
                              nat;
@@ -27,5 +26,6 @@ service : {
   getEssay: (nat) -> (opt EssayEntry);
   getUserEntrybyPrincipal: () -> (opt UserEntry);
   logIn: () -> (bool);
+  pay: (UserEntry, nat) -> (UserEntry);
   whoami: () -> (principal);
 }

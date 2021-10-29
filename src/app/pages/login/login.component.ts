@@ -24,11 +24,12 @@ export class LoginComponent implements OnInit {
       token : 4,
       myEssays : [9],
       userRating : 5,
-      reviewingEssay : [4]
+      reviewingEssay : 4
     }
     this.rensponse = this.helloService.createProfile(this.userEntry);
     console.log(this.rensponse);
-    this.rensponse = this.helloService.getUserId();
+    this.rensponse = this.helloService.getUsers();
+    this.helloService.userId = this.rensponse;
     console.log(this.rensponse);
 
     this.router.navigate(['../submit-essay'], { relativeTo: this.route });
