@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IcHelloService } from 'src/app/ic-hello.service';
+import { Essay } from 'src/app/interface/essay';
 
 @Component({
   selector: 'app-submit-essay',
@@ -8,8 +10,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SubmitEssayComponent implements OnInit {
 
-  constructor(private router:Router, private route: ActivatedRoute) { }
-
+  constructor(private router:Router, private route: ActivatedRoute, private helloService: IcHelloService) { }
+  public response:any;
+  public userId!:any;
+  public EssayObj!:Essay;
   ngOnInit(): void {
     
   }
@@ -17,7 +21,20 @@ export class SubmitEssayComponent implements OnInit {
     this.router.navigate(['../my-profile'], { relativeTo: this.route });
   }
   changeRouteSkyboard(){
-    this.router.navigate(['../skyboard'], { relativeTo: this.route });
+    this.userId = this.helloService.getUserId();
+    this.EssayObj = {
+      title : 'string',
+      topic : 'string',
+      wordCount : 9,
+      userId : this.userId,
+      text : 'string',
+      tokenToPay : 3,
+      reviewTimes : 4,
+    };
+
+    this.response = this.helloService.createEssay(this.EssayObj);
+    console.log(this.response);
+    // this.router.navigate(['../skyboard'], { relativeTo: this.route });
   }
   changeRouteEssayReview(){
     this.router.navigate(['../essay-review'], { relativeTo: this.route });
@@ -25,5 +42,9 @@ export class SubmitEssayComponent implements OnInit {
   changeRouteMyWork(){
     this.router.navigate(['../my-work'], { relativeTo: this.route });
   }
+  
+ 
+
+  
 
 }
