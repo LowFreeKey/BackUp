@@ -58,21 +58,29 @@ actor main {
     };
 
     public shared(msg) func createProfile( userData:UserEntry) : async Bool {
-        dbase_profiles.put(msg.caller,userData);
-        switch( dbase_profiles.get(msg.caller)){
-          case null {
-                return false;
-            };
-            case (?(_)){
-                return true;
-            };
-        }; 
+        var nameNotUsed = true;
+        for((x,v) in dbase_profiles.entries())
+        {
+            if(v.userName == userData.userName)
+            {
+                nameNotUsed := false;
+            }
+        };
+
+        if(nameNotUsed == true)
+        {
+            dbase_profiles.put(msg.caller,userData);
+        };
+
+        return nameNotUsed;
+
     };
 
 
-    public shared(msg) func createEssay( essayData:EssayEntry) : async () {
-        dbase_essays.put(currentNextId,essayData);
-       
+
+    public shared(msg) func createEssay( essayData:EssayEntry) : async Bool {
+        
+        var paid = false;
         var user  = dbase_profiles.get(msg.caller);
 
         switch (user) {
@@ -80,16 +88,37 @@ actor main {
                 
             };
             case (?user) {
-                var updatedUser = setEssayId(user,true,currentNextId);
-                var replaced = dbase_profiles.replace(msg.caller,updatedUser);
+                if( essayData.tokenToPay < user.token )
+                {
+                    dbase_essays.put(currentNextId,essayData); 
+                    currentNextId += 1;
+                    var updatedUser = setEssayId(user,true,currentNextId,essayData.tokenToPay);
+                    var replaced = dbase_profiles.replace(msg.caller,updatedUser);
+                    paid := true;
+                }
+                else{
+
+                }
             };
         };
 
         
-        
-        currentNextId += 1;
+        return paid;
+       
     };
 
+
+    public func pay(user : UserEntry , valueToPay:Nat) : async UserEntry{
+        {
+            userName = user.userName;
+            token  = user.token - valueToPay;
+            userRating  = user.userRating;
+            myEssays = user.myEssays;
+            reviewingEssay= user.reviewingEssay;
+        }
+    };
+
+    
 
 
     public shared(msg) func addReviewingEssay(id:Nat) : () {
@@ -110,10 +139,15 @@ actor main {
                     }
                  };
 
-                 if(isIn == false)
-                {
-                    var updatedUser = setEssayId(user, false, id);
-                    var replaced = dbase_profiles.replace(msg.caller,updatedUser);
+                 if(isIn == false){
+                    if(user.reviewingEssay == 0) {
+                        var updatedUser = setEssayId(user, false, id,0);
+                        var replaced = dbase_profiles.replace(msg.caller,updatedUser);
+                    }
+                    else {
+                        //Else he is already reviewing an essay
+                    }
+                 
                 }
             };
         };
@@ -122,13 +156,13 @@ actor main {
     };
 
 
-    func setEssayId(user: UserEntry, own : Bool, id:Nat) : UserEntry {
+    func setEssayId(user: UserEntry, own : Bool, id:Nat, amount : Nat) : UserEntry {
         
         if(own)
         {
             {
             userName = user.userName;
-            token  = user.token;
+            token  = user.token - amount;
             userRating  = user.userRating;
             myEssays = Array.append(user.myEssays,[id]);
             reviewingEssay= user.reviewingEssay;
@@ -141,10 +175,12 @@ actor main {
             token  = user.token;
             userRating  = user.userRating;
             myEssays = user.myEssays;
-            reviewingEssay= Array.append(user.reviewingEssay,[id]);
+            reviewingEssay= id;
             }
         }
   };
+
+   
 
     public func getEssay(id:Nat) : async ?EssayEntry {
         dbase_essays.get(id)
