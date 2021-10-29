@@ -7,8 +7,8 @@ const ic_hello = require('src/declarations/hello').hello;
 export class IcHelloService {
 
   constructor() { }
-  public async greet(name:string){
-    return await ic_hello.greet(name);
+  public async whoami(){
+    return await ic_hello.whoami();
   }
   public async test(){
     return await ic_hello.test();
