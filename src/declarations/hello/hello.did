@@ -1,4 +1,31 @@
+type UserEntry = 
+ record {
+   myEssays: vec nat;
+   reviewingEssay: vec nat;
+   token: nat32;
+   userName: text;
+   userRating: nat32;
+ };
+type EssayEntry = 
+ record {
+   reviewTimes: nat32;
+   "text": text;
+   title: text;
+   tokenToPay: nat32;
+   topic: text;
+   userId: principal;
+   wordCount: nat32;
+ };
 service : {
-  greet: (text) -> (text) query;
-  test: () -> (text) query;
+  addReviewingEssay: (nat) -> () oneway;
+  createEssay: (EssayEntry) -> ();
+  createProfile: (UserEntry) -> (bool);
+  getAllEssays: () -> (vec record {
+                             nat;
+                             EssayEntry;
+                           });
+  getEssay: (nat) -> (opt EssayEntry);
+  getUserEntrybyPrincipal: () -> (opt UserEntry);
+  logIn: () -> (bool);
+  whoami: () -> (principal);
 }
