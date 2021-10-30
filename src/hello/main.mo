@@ -17,15 +17,15 @@ actor main {
     // from types.mo
     public type UserEntry = Types.userEntry;
     public type EssayEntry = Types.essayEntry;
-
+    public type Annonciation = Types.annonciation;
     
     var dbase_profiles = Map.HashMap<Principal,UserEntry>(0,Principal.equal,Principal.hash);
-
     var dbase_essays = Map.HashMap<Nat,EssayEntry>(0,Nat.equal,Hash.hash);
+    var dbase_annonciations = Map.HashMap<Nat,Annonciation>(0,Nat.equal,Hash.hash);
 
     private stable var currentNextId : Nat = 1;
     
-
+    private stable var upgradeCanistersAnnonciation : [(Nat, Annonciation)] = [];
     private stable var upgradeCanistersProfiles : [(Principal, UserEntry)] = [];
     private stable var upgradeCanistersEssays : [(Nat, EssayEntry)] = [];
 
@@ -34,8 +34,6 @@ actor main {
         let p : Principal = msg.caller;
         return p;
     };
-
-
 
    public shared (msg) func logIn() : async Bool {
 
@@ -73,10 +71,7 @@ actor main {
         };
 
         return nameNotUsed;
-
     };
-
-
 
     public shared(msg) func createEssay( essayData:EssayEntry) : async Bool {
         
@@ -101,12 +96,8 @@ actor main {
                 }
             };
         };
-
-        
         return paid;
-       
     };
-
 
     public func pay(user : UserEntry , valueToPay:Nat) : async UserEntry{
         {
@@ -115,16 +106,14 @@ actor main {
             userRating  = user.userRating;
             myEssays = user.myEssays;
             reviewingEssay= user.reviewingEssay;
+            pastRatedFeedbacks = user.pastRatedFeedbacks;
         }
     };
 
-    
-
-
-    public shared(msg) func addReviewingEssay(id:Nat) : () {
+    public shared(msg) func addReviewingEssay(id:Nat) : async Bool {
         
         var user  = dbase_profiles.get(msg.caller);
-        var isIn = false;
+        var isIn = true;
 
         switch (user) {
             case (null) {
@@ -135,11 +124,11 @@ actor main {
                  {
                     if(x == id)
                     {
-                        isIn := true;
+                        isIn := false;
                     }
                  };
 
-                 if(isIn == false){
+                 if(isIn == true){
                     if(user.reviewingEssay == 0) {
                         var updatedUser = setEssayId(user, false, id,0);
                         var replaced = dbase_profiles.replace(msg.caller,updatedUser);
@@ -151,10 +140,9 @@ actor main {
                 }
             };
         };
-
         currentNextId += 1;
+        return isIn;
     };
-
 
     func setEssayId(user: UserEntry, own : Bool, id:Nat, amount : Nat) : UserEntry {
         
@@ -166,6 +154,7 @@ actor main {
             userRating  = user.userRating;
             myEssays = Array.append(user.myEssays,[id]);
             reviewingEssay= user.reviewingEssay;
+            pastRatedFeedbacks = user.pastRatedFeedbacks;
             }
         }
         else
@@ -176,11 +165,100 @@ actor main {
             userRating  = user.userRating;
             myEssays = user.myEssays;
             reviewingEssay= id;
+            pastRatedFeedbacks = user.pastRatedFeedbacks;
             }
         }
   };
 
-   
+    public shared(msg) func incomeByAvarage(amount: Nat) : async Nat
+    {
+        var user  = dbase_profiles.get(msg.caller);
+        var income = 0;
+        switch (user) {
+            case (null) {
+            };
+            case (?user) {
+                income := (amount / 10) * user.userRating;
+            };
+        };
+        return income;
+    };
+
+    public func addRating(p : Principal, latestRating : Nat):()
+    {
+        var user  = dbase_profiles.get(p);
+        switch (user) {
+            case (null) {
+            };
+            case (?user) {
+                    var updatedArray = Array.append(user.pastRatedFeedbacks,[latestRating]);
+                    var summe = 0;
+                    var iterator = 0;
+                    for(x in updatedArray.vals())
+                    {
+                        iterator := iterator + 1;
+                        summe := summe + x;
+                    };
+                    var replace = {
+                        userName = user.userName;
+                        token  = user.token;
+                        userRating  = Nat.div(summe,iterator);
+                        myEssays = user.myEssays;
+                        reviewingEssay = user.reviewingEssay;
+                        pastRatedFeedbacks = updatedArray;
+                    };
+
+                    var replaced = dbase_profiles.replace(p,replace);
+
+            };
+        };
+    };
+
+    public shared(msg) func getReviewingEssay() : async ?EssayEntry{
+        
+        var user  = dbase_profiles.get(msg.caller);
+        switch (user) {
+            case (null) {
+                return null;
+            };
+            case (?user) {
+                return dbase_essays.get(user.reviewingEssay);
+                
+            };
+        };
+    };
+
+    public shared(msg) func submittReviewedEssay(newAnnonciation: Text) : (){
+        
+        
+        
+        var user  = dbase_profiles.get(msg.caller);
+        switch (user) {
+            case (null) {
+            };
+            case (?user) {
+                dbase_annonciations.put(user.reviewingEssay,{
+                    user = msg.caller;
+                    comments = newAnnonciation});
+            };
+        };
+    };
+
+    public func getReviewsFromEssay(id : Nat) : async Text{
+        
+        var result = dbase_annonciations.get(id);
+
+        switch (result) {
+            case (null) {
+                return "";
+            };
+            case (?result) {
+                return result.comments;
+            };
+        };
+
+        
+    };
 
     public func getEssay(id:Nat) : async ?EssayEntry {
         dbase_essays.get(id)
@@ -191,13 +269,16 @@ actor main {
         return Iter.toArray<(Nat, EssayEntry)>(entries);
     };
 
-
     system func preupgrade() {
+        upgradeCanistersAnnonciation := Iter.toArray(dbase_annonciations.entries());
         upgradeCanistersProfiles := Iter.toArray(dbase_profiles.entries());
         upgradeCanistersEssays := Iter.toArray(dbase_essays.entries());
     };
 
     system func postupgrade() {
+        dbase_annonciations := Map.fromIter<Nat, Annonciation>(upgradeCanistersAnnonciation.vals(), 10, Nat.equal, Hash.hash);
+        upgradeCanistersAnnonciation := [];
+
         dbase_profiles := Map.fromIter<Principal, UserEntry>(upgradeCanistersProfiles.vals(), 10, Principal.equal, Principal.hash);
         upgradeCanistersProfiles := [];
 
