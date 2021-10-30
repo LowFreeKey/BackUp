@@ -14,26 +14,31 @@ export class SubmitEssayComponent implements OnInit {
   public response:any;
   public userId!:any;
   public EssayObj!:Essay;
+  public essays!:any;
+  public essay!:any;
   ngOnInit(): void {
-    
+    this.EssayObj = {
+      title : 'string',
+      topic : 'rin',
+      wordCount : 9,
+      text : 'ring',
+      tokenToPay : 3,
+      reviewTimes : 4,
+    };
   }
   changeRoute(){
     this.router.navigate(['../my-profile'], { relativeTo: this.route });
   }
-  changeRouteSkyboard(){
+  async changeRouteSkyboard(){
+    console.log(this.EssayObj);
     this.userId = this.helloService.userId;
-    this.EssayObj = {
-      title : 'string',
-      topic : 'string',
-      wordCount : 9,
-      text : 'string',
-      tokenToPay : 3,
-      reviewTimes : 4,
-    };
-
-    this.response = this.helloService.createEssay(this.EssayObj);
+    this.response =  await this.helloService.createEssay(this.EssayObj);
     console.log(this.response);
-    // this.router.navigate(['../skyboard'], { relativeTo: this.route });
+    this.essays = await this.helloService.getAllEssay();
+    console.log(this.essays);
+    this.essay = await this.helloService.getEssay(4);
+    console.log(this.essay);
+    this.router.navigate(['../skyboard'], { relativeTo: this.route });
   }
   changeRouteEssayReview(){
     this.router.navigate(['../essay-review'], { relativeTo: this.route });

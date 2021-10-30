@@ -1,6 +1,6 @@
 
   <div class="form-block w-form">
-    <form id="email-form" name="email-form" data-name="Email Form" method="get"><label for="name" class="field-label h3sub">type in your name here if you dont have an account already</label><input type="text" class="w-input" maxlength="256" name="name" data-name="Name" placeholder="type in a username" id="input_createProfile">
+    <form id="email-form" name="email-form" data-name="Email Form"><label for="name" class="field-label h3sub">type in your name here if you dont have an account already</label><input type="text" class="w-input" maxlength="256" name="userName"  [(ngModel)]="userEntry.userName" data-name="Name" placeholder="type in a username" id="input_createProfile">
       <a (click)="changeRoute()" class="link-block-4 w-inline-block"><input type="submit" value="Submit" data-wait="" id="btn_createProfile" class="submit-button w-button"></a>
     </form>
     <div class="w-form-done">

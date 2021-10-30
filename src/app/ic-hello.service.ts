@@ -13,12 +13,19 @@ export class IcHelloService {
   public async createEssay(essay:Essay){
     return await ic_hello.createEssay(essay);
   }
+  public async getAllEssay(){
+    return await ic_hello.getAllEssays();
+  }
+  public async getEssay(id:number){
+    return await ic_hello.getEssay(id);
+  }
   public async createProfile( userData:User){
       return await ic_hello.createProfile( userData);
   }
   public async getUsers(){
     return await ic_hello.getUserEntrybyPrincipal();
   }
+
   public async getUserId(){
     return await ic_hello.whoami();
   }
