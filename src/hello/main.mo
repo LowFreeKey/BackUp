@@ -179,7 +179,7 @@ actor main {
             };
             case (?user) {
                 income := (amount / 10) * user.userRating;
-            };
+             };
         };
         return income;
     };
@@ -230,8 +230,6 @@ actor main {
 
     public shared(msg) func submittReviewedEssay(newAnnonciation: Text) : (){
         
-        
-        
         var user  = dbase_profiles.get(msg.caller);
         switch (user) {
             case (null) {
@@ -245,7 +243,7 @@ actor main {
     };
 
     public func getReviewsFromEssay(id : Nat) : async Text{
-        
+       
         var result = dbase_annonciations.get(id);
 
         switch (result) {
