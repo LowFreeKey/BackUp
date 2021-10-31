@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'home', component: HomePageComponent},
   {path: 'submit-essay' , component: SubmitEssayComponent},
   {path: 'skyboard', component: SkyboardComponent},
-  {path: 'review-board', component: ReviewedBoardComponent},
+  {path: 'review-board/:id/:essay', component: ReviewedBoardComponent},
   {path: 'my-work', component: MyWorkComponent},
   {path:'my-profile', component:MyProfileComponent},
   {path:'login', component:LoginComponent},

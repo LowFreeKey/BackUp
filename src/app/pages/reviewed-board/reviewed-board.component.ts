@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DiffContent, DiffResults } from 'ngx-text-diff/lib/ngx-text-diff.model';
+import { IcHelloService } from 'src/app/ic-hello.service';
 
 @Component({
   selector: 'app-reviewed-board',
@@ -7,13 +8,26 @@ import { DiffContent, DiffResults } from 'ngx-text-diff/lib/ngx-text-diff.model'
   styleUrls: ['./reviewed-board.component.scss']
 })
 export class ReviewedBoardComponent implements OnInit {
-  left = `some text to\nbe compared!`
-  right = `A changed\n version \n of the text to\nbe compared!`
-
-  constructor() {}
-
-  ngOnInit() {
+  left!:string;
+  right!:string;
+  state:boolean = false;
+  
+  public  rensponse!:any;
+  constructor(private helloService:IcHelloService,) {
   }
+
+  async ngOnInit() {
+    this.rensponse = await this.helloService.getReviewingEssay();
+    console.log(this.rensponse);
+    this.left = this.rensponse[0].text;
+    console.log(this.left);
+    this.rensponse = await this.helloService.getReviewedEssay(0);
+    this.right = this.rensponse;
+    console.log(this.right)
+    this.state = true;
+    
+  }
+
 
   onCompareResults(diffResults: DiffResults) {
     console.log('diffResults', diffResults);

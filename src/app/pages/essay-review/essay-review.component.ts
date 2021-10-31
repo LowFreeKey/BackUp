@@ -25,11 +25,21 @@ export class EssayReviewComponent implements OnInit {
     // console.log(this.essays);
     this.rensponse = await this.helloService.submitReviewedEssay(this.text);
     console.log(this.rensponse);
+    this.rensponse = await this.helloService.getReviewedEssay(0);
+    console.log(this.rensponse);
     // this.router.navigate(['../skyboard'], { relativeTo: this.route });
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+
      this.id = this.route.snapshot.paramMap.get('id');
+     if (this.id){
+       this.id = parseInt(this.id)
+     }
+     this.rensponse = await this.helloService.AddReviewEssay(this.id);
+     console.log(this.rensponse);
+     this.rensponse = await this.helloService.getReviewingEssay();
+     console.log(this.rensponse);
     this.essay = this.route.snapshot.paramMap.get('essay');
     if(this.essay){
       this.text = this.essay;

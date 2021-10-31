@@ -30,6 +30,16 @@ export class IcHelloService {
     return await ic_hello.whoami();
   }
 
+  public async AddReviewEssay(id:number){
+    return await ic_hello.addReviewingEssay(id);
+  }
+  public async getReviewingEssay(){
+    return await ic_hello.getReviewingEssay();
+  }
+  public async getReviewedEssay(id:number){
+    return await ic_hello.getReviewsFromEssay(id);
+  }
+
   public async submitReviewedEssay(text:string){
     return await ic_hello.submittReviewedEssay(text);
   } 

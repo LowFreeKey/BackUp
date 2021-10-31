@@ -29,7 +29,7 @@
           <textarea class="text-block-8" name="Text">
           </textarea>
           <button type="submit" >Accept review</button>
-          <td-ngx-text-diff
+          <td-ngx-text-diff *ngIf="state"
         [left]="left"
         [right]="right"
         (compareResults)="onCompareResults($event)"
