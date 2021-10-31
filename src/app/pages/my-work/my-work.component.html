@@ -1,55 +1,38 @@
+<div id="header" data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="header w-nav">
+  <div class="nav_points">
+    <div id="header_profileName" class="nav_point text_pre">ProfileName</div>
+  </div>
+  <a id="profilepicture" href="#" class="link-block w-inline-block">
+    <div id="profile_picture" class="profile"></div>
+  </a>
+</div>
+<div id="header" data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="grey w-nav"></div>
+<div data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
+  <div id="menu_skyboard" class="nav_menu_div active">
+    <a  class="h3sub text_active w-button">Skyboard</a>
+  </div>
+  <div id="menu_submit" class="nav_menu_div">
+    <a (click)="changeRouteSubmit()" class="h3sub text_inactive w-button">Submit</a>
+    <link rel="prerender" href="/essaysubmit">
+  </div>
+  <div id="menu_settings" class="nav_menu_div">
+    <a class="h3sub text_inactive w-button">Review</a>
+    <link rel="prerender" href="/essayreview">
+  </div>
+  <div id="menu_settings" class="nav_menu_div">
+    <a (click)="changeRouteMyWork()" class="h3sub text_inactive w-button">My Work</a>
+  </div>
+</div>
 <div class="background_white"></div>
-  <div data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
-    <div id="menu_skyboard" class="nav_menu_div active">
-      <a href="sky.html" class="h3sub text_inactive w-button">Skyboard</a>
-    </div>
-    <div id="menu_submit" class="nav_menu_div">
-      <a href="essaysubmit.html" class="h3sub text_inactive w-button">Submit</a>
-    </div>
-    <div id="menu_settings" class="nav_menu_div">
-      <a href="essayreview.html" class="h3sub text_inactive w-button">Review</a>
-    </div>
-    <div id="menu_settings" class="nav_menu_div">
-      <a href="essaymywork.html" aria-current="page" class="h3sub text_active w-button w--current">My Work</a>
+<div class="body_container w-container">
+  <div class="main_block_boards" (click)="changeRouteReviewBoard(essay)"   *ngFor="let essay of essays; index as i;">
+    <div id="list_box" class="board_view">
+      <div id="board_tile" class="style_text h3">{{essay[1].title}}</div>
+      <div id="board_attr" class="attributes">
+        <div class="text_pre">{{essay[1].tokenToPay + " Tokens" }}</div>
+        <div class="text_pre">{{essay[1].wordCount + " Words"}}</div>
+      </div>
+      <div class="text_small">{{essay[1].topic}}</div>
     </div>
   </div>
-  <div class="body_container w-container">
-    <div class="main_block_boards">
-      <div id="list_box" class="board_view">
-        <div id="board_tile" class="style_text h3">Exploring the Mediatization of Food </div>
-        <div class="monocle"></div>
-        <div id="board_attr" class="attributes">
-          <div class="text_pre">10 Tokens</div>
-          <div class="text_pre">1589 Words</div>
-        </div>
-        <div class="text_small">Socialogy</div>
-      </div>
-      <div id="list_box" class="board_view">
-        <div id="board_tile" class="style_text h3">Exploring the Mediatization of Food </div>
-        <div class="monocle"></div>
-        <div id="board_attr" class="attributes">
-          <div class="text_pre">10 Tokens</div>
-          <div class="text_pre">1589 Words</div>
-        </div>
-        <div class="text_small">Socialogy</div>
-      </div>
-      <div id="list_box" class="board_view">
-        <div id="board_tile" class="style_text h3">Exploring the Mediatization of Food </div>
-        <div class="monocle"></div>
-        <div id="board_attr" class="attributes">
-          <div class="text_pre">10 Tokens</div>
-          <div class="text_pre">1589 Words</div>
-        </div>
-        <div class="text_small">Socialogy</div>
-      </div>
-    </div>
-  </div>
-  <div id="header" data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="header w-nav">
-    <div class="nav_points">
-      <div id="header_profileName" class="nav_point text_pre">ProfileName</div>
-    </div>
-    <a id="profilepicture" href="#" class="link-block w-inline-block">
-      <div id="profile_picture" class="profile"></div>
-    </a>
-  </div>
-  <div id="header" data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="grey w-nav"></div>
+</div>

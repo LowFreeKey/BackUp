@@ -11,11 +11,13 @@ export const idlFactory = ({ IDL }) => {
     'userName' : IDL.Text,
     'token' : IDL.Nat,
     'myEssays' : IDL.Vec(IDL.Nat),
-    'userRating' : IDL.Nat32,
+    'pastRatedFeedbacks' : IDL.Vec(IDL.Nat),
+    'userRating' : IDL.Nat,
     'reviewingEssay' : IDL.Nat,
   });
   return IDL.Service({
-    'addReviewingEssay' : IDL.Func([IDL.Nat], [], ['oneway']),
+    'addRating' : IDL.Func([IDL.Principal, IDL.Nat], [], ['oneway']),
+    'addReviewingEssay' : IDL.Func([IDL.Nat], [IDL.Bool], []),
     'createEssay' : IDL.Func([EssayEntry], [IDL.Bool], []),
     'createProfile' : IDL.Func([UserEntry], [IDL.Bool], []),
     'getAllEssays' : IDL.Func(
@@ -24,9 +26,13 @@ export const idlFactory = ({ IDL }) => {
         [],
       ),
     'getEssay' : IDL.Func([IDL.Nat], [IDL.Opt(EssayEntry)], []),
+    'getReviewingEssay' : IDL.Func([], [IDL.Opt(EssayEntry)], []),
+    'getReviewsFromEssay' : IDL.Func([IDL.Nat], [IDL.Text], []),
     'getUserEntrybyPrincipal' : IDL.Func([], [IDL.Opt(UserEntry)], []),
+    'incomeByAvarage' : IDL.Func([IDL.Nat], [IDL.Nat], []),
     'logIn' : IDL.Func([], [IDL.Bool], []),
     'pay' : IDL.Func([UserEntry, IDL.Nat], [UserEntry], []),
+    'submittReviewedEssay' : IDL.Func([IDL.Text], [], ['oneway']),
     'whoami' : IDL.Func([], [IDL.Principal], []),
   });
 };

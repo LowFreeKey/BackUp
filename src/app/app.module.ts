@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgxTextDiffModule } from 'ngx-text-diff';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +13,7 @@ import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { MyWorkComponent } from './pages/my-work/my-work.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { FormsModule } from '@angular/forms';
+import { ReviewedBoardComponent } from './pages/reviewed-board/reviewed-board.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +24,15 @@ import { FormsModule } from '@angular/forms';
     EssayReviewComponent,
     MyProfileComponent,
     MyWorkComponent,
-    HomePageComponent
+    HomePageComponent,
+    ReviewedBoardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ScrollingModule, 
+    NgxTextDiffModule
   ],
   providers: [],
   bootstrap: [AppComponent]
