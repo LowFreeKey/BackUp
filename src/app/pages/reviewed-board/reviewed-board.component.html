@@ -26,14 +26,12 @@
     <div class="body_container w-container">
       <div class="main_block_boards">
         <div id="main_body" class="body2">
-          <textarea class="text-block-8" name="Text">
-          </textarea>
-          <button type="submit" >Accept review</button>
           <td-ngx-text-diff *ngIf="state"
         [left]="left"
         [right]="right"
         (compareResults)="onCompareResults($event)"
         ></td-ngx-text-diff>
+        <button type="submit" >Accept review</button>
       </div>
       <div class="annotations wf-section"></div>
     </div>
