@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
       userName : "",
       token : 20,
       myEssays : [],
+      pastRatedFeedbacks : [],
       userRating : 0,
       reviewingEssay : 0
     }

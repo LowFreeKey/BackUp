@@ -1,0 +1,39 @@
+<body class="body-7">
+    <div class="background_white"></div>
+    <div id="header" data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="header w-nav">
+      <div class="nav_points">
+        <div id="header_profileName" class="nav_point text_pre">ProfileName</div>
+      </div>
+      <a id="profilepicture" href="#" class="link-block w-inline-block">
+        <div id="profile_picture" class="profile"></div>
+      </a>
+    </div>
+    <div id="header" data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="grey w-nav"></div>
+    <div data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
+      <div id="menu_skyboard" class="nav_menu_div active">
+        <a href="sky.html" class="h3sub text_inactive w-button">Skyboard</a>
+      </div>
+      <div id="menu_submit" class="nav_menu_div">
+        <a href="essaysubmit.html" class="h3sub text_inactive w-button">Submit</a>
+      </div>
+      <div id="menu_settings" class="nav_menu_div">
+        <a href="essayreview.html" aria-current="page" class="h3sub text_active w-button w--current">Review</a>
+      </div>
+      <div id="menu_settings" class="nav_menu_div">
+        <a href="essaymywork.html" class="h3sub text_inactive w-button">My Work</a>
+      </div>
+    </div>
+    <div class="body_container w-container">
+      <div class="main_block_boards">
+        <div id="main_body" class="body2">
+          <textarea class="text-block-8" name="Text">
+          </textarea>
+          <button type="submit" >Accept review</button>
+          <td-ngx-text-diff
+        [left]="left"
+        [right]="right"
+        (compareResults)="onCompareResults($event)"
+        ></td-ngx-text-diff>
+      </div>
+      <div class="annotations wf-section"></div>
+    </div>

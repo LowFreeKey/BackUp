@@ -29,4 +29,8 @@ export class IcHelloService {
   public async getUserId(){
     return await ic_hello.whoami();
   }
+
+  public async submitReviewedEssay(text:string){
+    return await ic_hello.submittReviewedEssay(text);
+  } 
 }
