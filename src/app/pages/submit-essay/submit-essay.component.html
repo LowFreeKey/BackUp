@@ -1,13 +1,34 @@
-<div id="header" data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="grey w-nav"></div>
-  <div id="header" data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="header w-nav">
-    <div class="nav_points">
-      <div id="header_profileName" class="nav_point text_pre">ProfileName</div>
-    </div>
-    <a id="profilepicture" (click)="changeRoute()" class="link-block w-inline-block">
-      <div id="profile_picture" class="profile"></div>
-    </a>
+<body class="body-6">
+<div class="background_white"></div>
+
+<div id="header" data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="header w-nav">
+  <div class="nav_points">
+    <div id="header_profileName" class="nav_point text_pre">ProfileName</div>
   </div>
-  <div class="background_white"></div>
+  <a id="profilepicture" href="#" class="link-block w-inline-block">
+    <div id="profile_picture" class="profile"></div>
+  </a>
+</div>
+
+<div id="header" data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="grey w-nav"></div>
+
+  <div data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
+    <div id="menu_skyboard" class="nav_menu_div active">
+      <a (click)=changeRouteSkyboard() class="h3sub text_inactive w-button">Skyboard</a>
+    </div>
+    <div id="menu_submit" class="nav_menu_div">
+      <a (click)=changeRouteSkyboard() class="h3sub text_active w-button">Submit</a>
+    </div>
+    <div id="menu_settings" class="nav_menu_div">
+      <a (click)=changeRouteEssayReview() class="h3sub text_inactive w-button">Review</a>
+    </div>
+    <div id="menu_settings" class="nav_menu_div">
+      <a (click)=changeRouteMyWork() class="h3sub text_inactive w-button">My Work</a>
+    </div>
+  </div>
+
+ 
+
   <div class="body_container w-container">
     <div class="main_block_boards">
       <div id="main_body" class="body2">
@@ -75,17 +96,8 @@
       </div>
     </div>
   </div> 
-  <div data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
-    <div id="menu_skyboard" class="nav_menu_div active">
-      <a (click)=changeRouteSkyboard() class="h3sub text_inactive w-button">Skyboard</a>
-    </div>
-    <div id="menu_submit" class="nav_menu_div">
-      <a (click)=changeRouteSkyboard() class="h3sub text_active w-button">Submit</a>
-    </div>
-    <div id="menu_settings" class="nav_menu_div">
-      <a (click)=changeRouteEssayReview() class="h3sub text_inactive w-button">Review</a>
-    </div>
-    <div id="menu_settings" class="nav_menu_div">
-      <a (click)=changeRouteMyWork() class="h3sub text_inactive w-button">My Work</a>
-    </div>
-  </div>
+  
+ 
+
+
+
