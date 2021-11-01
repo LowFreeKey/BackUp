@@ -3,6 +3,8 @@ import { Essay } from './interface/essay';
 import { User } from './interface/user';
 const ic_hello = require('src/declarations/hello').hello;
 
+
+
 @Injectable({
   providedIn: 'root'
 })
