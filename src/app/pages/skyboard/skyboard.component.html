@@ -30,9 +30,9 @@
     </div>
   </div>
   
-  <div class="body_container w-container">
-    <div class="main_block_boards" (click)="changeRouteEssayReview(essay)"   *ngFor="let essay of essays; index as i;">
-      <div id="list_box" class="board_view">
+  <div class="body_container w-container" >
+    <div class="main_block_boards" >
+      <div id="list_box" class="board_view" (click)="changeRouteEssayReview(essay)" *ngFor="let essay of essays; index as i;">
         <div id="board_tile" class="style_text h3">{{essay[1].title}}</div>
         <div id="board_attr" class="attributes">
           <div class="text_pre">{{essay[1].tokenToPay + " Tokens" }}</div>

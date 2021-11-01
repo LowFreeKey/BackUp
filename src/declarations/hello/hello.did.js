@@ -16,7 +16,7 @@ export const idlFactory = ({ IDL }) => {
     'reviewingEssay' : IDL.Nat,
   });
   return IDL.Service({
-    'addRating' : IDL.Func([IDL.Principal, IDL.Nat], [], ['oneway']),
+    'addRating' : IDL.Func([IDL.Nat, IDL.Nat], [], ['oneway']),
     'addReviewingEssay' : IDL.Func([IDL.Nat], [IDL.Bool], []),
     'createEssay' : IDL.Func([EssayEntry], [IDL.Bool], []),
     'createProfile' : IDL.Func([UserEntry], [IDL.Bool], []),

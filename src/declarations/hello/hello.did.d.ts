@@ -16,7 +16,7 @@ export interface UserEntry {
   'reviewingEssay' : bigint,
 }
 export interface _SERVICE {
-  'addRating' : (arg_0: Principal, arg_1: bigint) => Promise<undefined>,
+  'addRating' : (arg_0: bigint, arg_1: bigint) => Promise<undefined>,
   'addReviewingEssay' : (arg_0: bigint) => Promise<boolean>,
   'createEssay' : (arg_0: EssayEntry) => Promise<boolean>,
   'createProfile' : (arg_0: UserEntry) => Promise<boolean>,

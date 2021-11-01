@@ -18,15 +18,15 @@ export class SubmitEssayComponent implements OnInit {
   public essay!:any;
   ngOnInit(): void {
     this.EssayObj = {
-      title : 'string',
-      topic : 'rin',
+      title : '',
+      topic : '',
       wordCount : 9,
-      text : 'ring',
+      text : '',
       tokenToPay : 3,
       reviewTimes : 4,
     };
   }
-  changeRoute(){
+  changeRoute(): void{
     this.router.navigate(['../my-profile'], { relativeTo: this.route });
   }
   async changeRouteSkyboard(){

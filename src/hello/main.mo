@@ -12,13 +12,16 @@ import Iter "mo:base/Iter";
 import Array "mo:base/Array";
 import Nat "mo:base/Nat";
 
+//import Erc20 "erc20";
+
 actor main {
 
     // from types.mo
     public type UserEntry = Types.userEntry;
     public type EssayEntry = Types.essayEntry;
     public type Annonciation = Types.annonciation;
-    
+    //public type Token = Erc20.erc20_token;
+
     var dbase_profiles = Map.HashMap<Principal,UserEntry>(0,Principal.equal,Principal.hash);
     var dbase_essays = Map.HashMap<Nat,EssayEntry>(0,Nat.equal,Hash.hash);
     var dbase_annonciations = Map.HashMap<Nat,Annonciation>(0,Nat.equal,Hash.hash);
@@ -55,8 +58,10 @@ actor main {
         dbase_profiles.get(msg.caller);
     };
 
-    public shared(msg) func createProfile( userData:UserEntry) : async Bool {
+    public shared(msg) func createProfile( userData:UserEntry ) : async Bool {
         var nameNotUsed = true;
+
+
         for((x,v) in dbase_profiles.entries())
         {
             if(v.userName == userData.userName)
@@ -75,6 +80,8 @@ actor main {
 
     public shared(msg) func createEssay( essayData:EssayEntry) : async Bool {
         
+        //var testToken : Erc20.erc20_token = await Erc20.erc20_token("","",2,1,msg.caller);
+
         var paid = false;
         var user  = dbase_profiles.get(msg.caller);
 
@@ -117,6 +124,7 @@ actor main {
 
         switch (user) {
             case (null) {
+                isIn := false;
             };
             case (?user) {
 
@@ -136,7 +144,6 @@ actor main {
                     else {
                         //Else he is already reviewing an essay
                     }
-                 
                 }
             };
         };
@@ -179,39 +186,49 @@ actor main {
             };
             case (?user) {
                 income := (amount / 10) * user.userRating;
-             };
+            };
         };
         return income;
     };
 
-    public func addRating(p : Principal, latestRating : Nat):()
+    public func addRating(essayId : Nat, latestRating : Nat):()
     {
-        var user  = dbase_profiles.get(p);
-        switch (user) {
+        var feedbackCreator = dbase_annonciations.get(essayId);
+
+        switch (feedbackCreator) {
             case (null) {
             };
-            case (?user) {
-                    var updatedArray = Array.append(user.pastRatedFeedbacks,[latestRating]);
-                    var summe = 0;
-                    var iterator = 0;
-                    for(x in updatedArray.vals())
-                    {
-                        iterator := iterator + 1;
-                        summe := summe + x;
-                    };
-                    var replace = {
-                        userName = user.userName;
-                        token  = user.token;
-                        userRating  = Nat.div(summe,iterator);
-                        myEssays = user.myEssays;
-                        reviewingEssay = user.reviewingEssay;
-                        pastRatedFeedbacks = updatedArray;
-                    };
+            case (?feedbackCreator) {
+                    var user  = dbase_profiles.get(feedbackCreator.user);
+                    switch (user) {
+                        case (null) {
+                        };
+                        case (?user) {
+                                var updatedArray = Array.append(user.pastRatedFeedbacks,[latestRating]);
+                                var summe = 0;
+                                var iterator = 0;
+                                for(x in updatedArray.vals())
+                                {
+                                    iterator := iterator + 1;
+                                    summe := summe + x;
+                                };
+                                var replace = {
+                                    userName = user.userName;
+                                    token  = user.token;
+                                    userRating  = Nat.div(summe,iterator);
+                                    myEssays = user.myEssays;
+                                    reviewingEssay = user.reviewingEssay;
+                                    pastRatedFeedbacks = updatedArray;
+                                };
 
-                    var replaced = dbase_profiles.replace(p,replace);
+                                var replaced = dbase_profiles.replace(feedbackCreator.user,replace);
 
-            };
+                        };
+                    };
+                };
         };
+
+        
     };
 
     public shared(msg) func getReviewingEssay() : async ?EssayEntry{
@@ -230,6 +247,8 @@ actor main {
 
     public shared(msg) func submittReviewedEssay(newAnnonciation: Text) : (){
         
+        
+        
         var user  = dbase_profiles.get(msg.caller);
         switch (user) {
             case (null) {
@@ -243,7 +262,7 @@ actor main {
     };
 
     public func getReviewsFromEssay(id : Nat) : async Text{
-       
+        
         var result = dbase_annonciations.get(id);
 
         switch (result) {

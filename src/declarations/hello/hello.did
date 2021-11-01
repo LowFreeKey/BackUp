@@ -17,7 +17,7 @@ type EssayEntry =
    wordCount: nat32;
  };
 service : {
-  addRating: (principal, nat) -> () oneway;
+  addRating: (nat, nat) -> () oneway;
   addReviewingEssay: (nat) -> (bool);
   createEssay: (EssayEntry) -> (bool);
   createProfile: (UserEntry) -> (bool);
