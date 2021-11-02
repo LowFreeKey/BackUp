@@ -2,8 +2,10 @@ Dfinity/Encode final project Hackathon.
 
 For questions. laszlo.corti@protonamil.com or Discord LowFreeKey#1759
 
-We have been expericing some serious issues with CSS / Angular. 
+We have been expericing some issues with Frontend implementation via Angular.
 But feel free to clone and run it locally so you may test the backend properly with Candid!
+
+Technical Data Flow: https://www.figma.com/file/Bl0leGtRxRPWMA61T2PeJJ/Technical-Data-Flow
 
 ---
 For Candid testing,
