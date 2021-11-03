@@ -21,6 +21,9 @@ export class MyWorkComponent implements OnInit {
     });
     console.log(this.essays);
   }
+  changeRouteSkyboard(){
+    this.router.navigate(['../skyboard'], { relativeTo: this.route });
+  }
   changeRoute(){
     this.router.navigate(['../my-profile'], { relativeTo: this.route });
   }

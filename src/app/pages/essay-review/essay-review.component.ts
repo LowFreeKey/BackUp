@@ -48,5 +48,15 @@ export class EssayReviewComponent implements OnInit {
     console.log(this.id);
     
   }
+  changeRouteSkyboard(){
+    this.router.navigate(['../../../skyboard'], { relativeTo: this.route });
+  }
+  changeRouteMyWork(){
+    this.router.navigate(['../../../my-work'], { relativeTo: this.route });
+  }
+  changeRouteEssaySubmit(){
+    this.router.navigate(['../../../submit-essay'], { relativeTo: this.route });
+  }
+  
   
 }

@@ -19,9 +19,9 @@
     <div id="menu_submit" class="nav_menu_div">
       <a (click)=changeRouteSkyboard() class="h3sub text_active w-button">Submit</a>
     </div>
-    <div id="menu_settings" class="nav_menu_div">
+    <!-- <div id="menu_settings" class="nav_menu_div">
       <a (click)=changeRouteEssayReview() class="h3sub text_inactive w-button">Review</a>
-    </div>
+    </div> -->
     <div id="menu_settings" class="nav_menu_div">
       <a (click)=changeRouteMyWork() class="h3sub text_inactive w-button">My Work</a>
     </div>
@@ -77,7 +77,7 @@
                   <div class="form_div"><label for="education" class="text_pre">Education Level</label><input type="text" class="form_input w-input" maxlength="256" name="education"  data-name="Education" placeholder="e.g Highschool, Bachelor, Master, Phd" id="education" required=""></div>
                   <div class="form_div"><label for="topic" class="text_pre">Topic</label><input type="text" class="form_input w-input" maxlength="256" name="topic" data-name="Topic" [(ngModel)]="EssayObj.topic" placeholder="Philosophy, Law, Art, ..." id="topic" required=""></div>
                   <div class="form_div"><label for="reviewtimes" class="text_pre">Review Times</label><input type="number" class="form_input w-input" maxlength="256" name="reviewtimes" [(ngModel)]="EssayObj.reviewTimes" data-name="Reviewtimes" placeholder="times reviewed by " id="reviewtimes" required=""></div>
-                  <div id="token-spend" class="form_div"><label for="token" class="text_pre">Token </label><input type="number" class="form_input w-input" maxlength="256" name="token" [(ngModel)]="EssayObj.tokenToPay" data-name="Token" placeholder="" id="token"></div><button (click)=changeRouteSkyboard() type="submit"  class="btn_submit w-button"></button>
+                  <div id="token-spend" class="form_div"><label for="token" class="text_pre">Token </label><input type="number" class="form_input w-input" maxlength="256" name="token" [(ngModel)]="EssayObj.tokenToPay" data-name="Token" placeholder="" id="token"></div><button (click)=changeRouteSkyboard() type="submit"  class="btn_submit w-button">Submit</button>
                 </form>
                 <div class="w-form-done">
                   <div>Thank you! Your submission has been received!</div>

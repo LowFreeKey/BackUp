@@ -11,16 +11,16 @@
   <div id="header" data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="grey w-nav"></div>
   <div data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
     <div id="menu_skyboard" class="nav_menu_div active">
-      <a href="sky.html" class="h3sub text_inactive w-button">Skyboard</a>
+      <a (click)="changeRouteSkyboard()" class="h3sub text_inactive w-button">Skyboard</a>
     </div>
     <div id="menu_submit" class="nav_menu_div">
-      <a href="essaysubmit.html" class="h3sub text_inactive w-button">Submit</a>
+      <a (click)="changeRouteEssaySubmit()" class="h3sub text_inactive w-button">Submit</a>
     </div>
     <div id="menu_settings" class="nav_menu_div">
-      <a href="essayreview.html" aria-current="page" class="h3sub text_active w-button w--current">Review</a>
+      <a  aria-current="page" class="h3sub text_active w-button w--current">Review</a>
     </div>
     <div id="menu_settings" class="nav_menu_div">
-      <a href="essaymywork.html" class="h3sub text_inactive w-button">My Work</a>
+      <a (click)="changeRouteMyWork()" class="h3sub text_inactive w-button">My Work</a>
     </div>
   </div>
   <div class="body_container w-container">
