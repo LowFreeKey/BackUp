@@ -10,16 +10,17 @@ Technical Data Flow: https://www.figma.com/file/Bl0leGtRxRPWMA61T2PeJJ/Technical
 ---
 For Candid testing,
 
-just follow along the function order in candid put in the needed inputs and you can create an user , write and submit your essay with parameters ( Topic, Education, TOken Payment and so on).
-Then You can pull essays from other users and review them, make text annotations, submit your review and get payments from other users in kawak token, those get splitet by your rating e.g 90%, which is affected by the quality of work you do.
-Working functions for the frontend. 
+Follow the function order in Candid, put the required inputs so you can create a user "WordSmith". Write and submit your essay with the fitting parameters ( Topic, Education, Word Count, Token Bounty).
+Then You can pull essays from other users and review them, make text annotations, submit your review and get payments from other users in the KawaK token. The distribution of toekens is split, where the majority will go will go to the WordSmith and the remainder the indepedant Tribunal pool. 
 
+
+Live Demo:
 https://xcpqn-yiaaa-aaaai-aa2rq-cai.ic0.app/
 
 There you find some examples.
 Have FUN :)
 
-by Kawak Team
+by the KawaK Team
 _________________
 
 
