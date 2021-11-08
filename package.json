@@ -33,6 +33,8 @@
     "@angular/router": "~12.1.0",
     "@dfinity/auth-client": "^0.10.1",
     "@recogito/recogito-js": "^1.5.3",
+    "angular-ui-form-validation": "^2.1.2",
+    "bootstrap-validate": "^2.2.4",
     "ngx-text-diff": "^0.6.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",

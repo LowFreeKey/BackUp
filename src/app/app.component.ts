@@ -1,31 +1,33 @@
-import { Component } from "@angular/core";
-import { Principal } from "@dfinity/principal";
-import { IcHelloService } from "./ic-hello.service";
-import { Essay } from "./interface/essay";
+import { Component } from '@angular/core';
+import { Router, NavigationStart, Event, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './app.component.html'
 })
-export class AppComponent {
-  constructor(private helloService: IcHelloService){
-    // this.getResponse();
-  }
-  public response:any;
-  public userId = this.helloService.getUserId();
-  // public EssayObj:Essay = {
-  //   title : "string",
-  //   topic : "string",
-  //   wordCount : 9,
-  //   userId : this.userId,
-  //   text : "string",
-  //   tokenToPay : 3,
-  //   reviewTimes : 4,
-  // };
- 
 
-  // public async getResponse(){
-  //   this.response = await this.helloService.createEssay(this.EssayObj);
-  // }
+
+export class AppComponent {
+  timeout!: NodeJS.Timeout;
+  routerChanged = true;
+  routerShow = false;
+  constructor(private router: Router) {
+    router.events.subscribe((event: Event) => {
+
+      if (event instanceof NavigationStart) {
+        // Show loading indicator
+        this.routerChanged = true;
+        this.routerShow = !this.routerChanged;
+      }
+
+      if (event instanceof NavigationEnd) {
+        // Hide loading indicator
+        this.timeout = setTimeout(() => {
+          clearTimeout(this.timeout);
+          this.routerChanged = false;
+          this.routerShow = !this.routerChanged;
+        }, 1000);
+      }
+    });
+  }
 }

@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
 
   async changeRoute(){
     // this.userEntry = new  User("itachi",4,[9],5,[4]);
+    this.router.navigate(['../submit-essay'], { relativeTo: this.route });
     console.log(this.userEntry);
     this.rensponse = await this.helloService.createProfile(this.userEntry);
     console.log(this.rensponse);
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
     this.helloService.userId = this.rensponse;
     console.log(this.users);
 
-    this.router.navigate(['../submit-essay'], { relativeTo: this.route });
+    
   }
   
 

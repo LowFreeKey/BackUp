@@ -1,32 +1,20 @@
-#wordcount .ng-valid .ng-untouched .ng-pristine{
-    color: green;
-}
-#wordcount .ng-invalid .ng-touched .ng-dirty{
-    color: red;
-}
 
 
-
-#topic .ng-valid .ng-untouched .ng-pristine{
-    
-}
-#reviewtimes{
-    
-}
-#token{
-    
+#word-count .ng-valid, 
+#topic .ng-valid, 
+#review-times .ng-valid,
+#title_field .ng-valid, 
+#field .ng-valid, 
+#token .ng-valid {  
+    background-color: green; 
 }
 
-
-#essay .ng-valid .ng-untouched .ng-pristine{
-    background-color: green !important;
+#word-count .ng-invalid, 
+#topic .ng-invalid, 
+#review-times .ng-invalid,
+#title_field .ng-invalid, 
+#field .ng-invalid, 
+#token .ng-invalid { 
+    background-color: red; 
 }
-#essay .ng-invalid .ng-touched .ng-dirty{
-    background-color: red !important;
-}
 
-
-
-#wordcount{
-    
-}
