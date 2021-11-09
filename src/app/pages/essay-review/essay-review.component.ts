@@ -27,7 +27,7 @@ export class EssayReviewComponent implements OnInit {
     console.log(this.rensponse);
     this.rensponse = await this.helloService.getReviewedEssay(0);
     console.log(this.rensponse);
-    // this.router.navigate(['../skyboard'], { relativeTo: this.route });
+    this.router.navigate(['../../../skyboard'], { relativeTo: this.route });
   }
 
   async ngOnInit(): Promise<void> {
