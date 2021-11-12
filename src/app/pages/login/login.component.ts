@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
     console.log(this.rensponse);
     this.rensponse = await  this.helloService.getUserId();
     console.log(this.rensponse);
+    console.log(this.rensponse.toString());
     this.users = await this.helloService.getUsers();
     this.helloService.userId = this.rensponse;
     console.log(this.users);

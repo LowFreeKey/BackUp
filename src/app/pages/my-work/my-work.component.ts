@@ -10,12 +10,16 @@ import { Essay } from 'src/app/interface/essay';
 })
 export class MyWorkComponent implements OnInit {
   public essays!:Array<Array<Essay>>;
+  public user!:any;
   constructor(private helloService: IcHelloService, private router:Router,private route:ActivatedRoute) {
     
    }
 
   async ngOnInit(): Promise<void> {
     this.essays = await this.helloService.getAllEssay();
+    this.user = await this.helloService.getUsers();
+    console.log(this.user);
+    console.log(this.user[0].myEssays);
     this.essays.forEach(essay => {
       console.log(essay[1].title);
     });
