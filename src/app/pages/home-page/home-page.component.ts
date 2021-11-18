@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import {AuthClient} from '@dfinity/auth-client';
+//@ts-ignore
+import { canisterId, createActor } from "../../../declarations/hello";
 
 //from npm i --save @dfinity/auth-client
 //import { Actor, HttpAgent } from "@dfinity/agent";
@@ -21,8 +24,39 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  changeRoute(){
-    this.router.navigate(['../login'], { relativeTo: this.route });
+  async changeRoute(){
+    const days = BigInt(1);
+    const hours = BigInt(24);
+    const nanoseconds = BigInt(3600000000000);
+    const authClient = await AuthClient.create();
+    if (await authClient.isAuthenticated()) {
+      this.handleAuthenticated(authClient);
+      this.router.navigate(['../submit-essay'], { relativeTo: this.route });
+    }
+    // else{
+      await authClient.login({
+        onSuccess: async () => {
+          this.handleAuthenticated(authClient);
+          this.router.navigate(['../login'], { relativeTo: this.route });
+        },
+        identityProvider:
+          process.env.DFX_NETWORK === "ic"
+            ? "https://identity.ic0.app/#authorize"
+            : process.env.LOCAL_II_CANISTER,
+        // Maximum authorization expiration is 8 days
+        maxTimeToLive: days * hours * nanoseconds,
+      });
+    // }
+    
+    
+  }
+  async handleAuthenticated(authClient: AuthClient) {
+    const identity = await authClient.getIdentity();
+    const whoami_actor = createActor(canisterId as string, {
+      agentOptions: {
+        identity,
+      },
+    });
   }
 
 }

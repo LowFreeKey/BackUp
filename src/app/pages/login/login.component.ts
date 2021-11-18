@@ -15,7 +15,9 @@ export class LoginComponent implements OnInit {
   public userEntry!:User;
   public rensponse!:any;
   public users!:any;
-  ngOnInit(): void {
+  
+  async ngOnInit(): Promise<void> {
+    
     this.userEntry = {
       userName : "",
       token : 20,
@@ -26,7 +28,6 @@ export class LoginComponent implements OnInit {
     }
   }
   
-
   async changeRoute(){
     // this.userEntry = new  User("itachi",4,[9],5,[4]);
     this.router.navigate(['../submit-essay'], { relativeTo: this.route });
