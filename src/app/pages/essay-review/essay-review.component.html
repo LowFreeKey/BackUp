@@ -23,14 +23,8 @@
       <a (click)="changeRouteMyWork()" class="h3sub text_inactive w-button">My Work</a>
     </div>
   </div>
-  <div class="body_container w-container">
-    <div class="main_block_boards">
-      <div id="main_body" class="body2">
-        <textarea class="text-block-8" name="Text" [(ngModel)]="text">
-       
-        </textarea>
-        <button type="submit" (click)="submitEssay()">Submit</button>
-        
-    </div>
-    <div class="annotations wf-section"></div>
-  </div>
+<div class="container">
+    <textarea class="editor-area" name="Text" [(ngModel)]="text">
+    </textarea>
+    <button id="submit" type="submit" (click)="submitEssay()">Submit</button>
+</div>

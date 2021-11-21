@@ -23,15 +23,11 @@
         <a href="essaymywork.html" class="h3sub text_inactive w-button">My Work</a>
       </div>
     </div>
-    <div class="body_container w-container">
-      <div class="main_block_boards">
-        <div id="main_body" class="body2">
-          <td-ngx-text-diff *ngIf="state"
+        <div class="container">
+          <td-ngx-text-diff class="editor-area" *ngIf="state"
         [left]="left"
         [right]="right"
         (compareResults)="onCompareResults($event)"
         ></td-ngx-text-diff>
-        <button type="submit" >Accept review</button>
+        <button id="submit" type="submit" >Accept review</button>
       </div>
-      <div class="annotations wf-section"></div>
-    </div>

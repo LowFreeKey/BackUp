@@ -1,0 +1,54 @@
+.editor-area{
+    position: relative;
+    display:block !important;
+    margin-top: 25vh;
+    margin-left: 24vw;
+    height:55vh;
+    width:50vw;
+    background-color:ivory;
+    margin-bottom: 0px !important;
+
+}
+.container {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    min-height: 1000px;
+    min-width: 500px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    clear: both;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    opacity: 1;
+    background-clip: content-box;
+    -webkit-text-fill-color: inherit;
+    -o-object-fit: fill;
+    object-fit: fill;
+  }
+#submit{
+    position: relative;
+    z-index: 14;
+    margin-top: 0px !important;
+    display: block !important;
+    background-color: #ff9115;
+    border-radius: 1vw;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 24vw;
+    height:5vh;
+    width:50vw;
+}
