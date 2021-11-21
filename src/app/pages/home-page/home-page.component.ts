@@ -31,7 +31,7 @@ export class HomePageComponent implements OnInit {
     const authClient = await AuthClient.create();
     if (await authClient.isAuthenticated()) {
       this.handleAuthenticated(authClient);
-      this.router.navigate(['../submit-essay'], { relativeTo: this.route });
+      this.router.navigate(['../login'], { relativeTo: this.route });
     }
     // else{
       await authClient.login({
