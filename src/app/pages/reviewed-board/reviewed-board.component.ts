@@ -21,7 +21,8 @@ export class ReviewedBoardComponent implements OnInit {
     console.log(this.rensponse);
     this.left = this.rensponse[0].text;
     console.log(this.left);
-    this.rensponse = await this.helloService.getReviewedEssay(0);
+    this.rensponse = await this.helloService.getReviewedEssay(1);
+    console.log(this.rensponse);
     this.right = this.rensponse;
     console.log(this.right)
     this.state = true;

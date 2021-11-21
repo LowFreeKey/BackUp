@@ -25,7 +25,7 @@ export class EssayReviewComponent implements OnInit {
     // console.log(this.essays);
     this.rensponse = await this.helloService.submitReviewedEssay(this.text);
     console.log(this.rensponse);
-    this.rensponse = await this.helloService.getReviewedEssay(0);
+    this.rensponse = await this.helloService.getReviewedEssay(1);
     console.log(this.rensponse);
     this.router.navigate(['../../../skyboard'], { relativeTo: this.route });
   }
