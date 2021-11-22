@@ -10,7 +10,7 @@ import { IcHelloService } from 'src/app/ic-hello.service';
 export class EssayReviewComponent implements OnInit {
   public essay!:any;
   public  rensponse!:any;
-  public text:string = " Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt cum mollitia a magni consectetur quos odio recusandae autem, laborum quasi error exercitationem aliquid deserunt cumque id nisi obcaecati neque assumenda expedita corrupti fugiat, sunt facere. Recusandae, sed? Ea ducimus repudiandae minus nihil numquam necessitatibus hic, vel aut, expedita officia voluptas?"
+  public text:string = ""
   public id: any;
   constructor(private helloService:IcHelloService, private router:Router, private route:ActivatedRoute) { 
 
