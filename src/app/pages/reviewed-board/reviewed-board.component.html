@@ -1,5 +1,12 @@
 <body class="body-7">
-    <div class="background_white"></div>
+    <div class="background_white">
+      <td-ngx-text-diff class="editor-area" *ngIf="state"
+      [left]="left"
+      [right]="right"
+      (compareResults)="onCompareResults($event)"
+      ></td-ngx-text-diff>
+      <button id="submit" type="submit" >Accept review</button>
+    </div>
     <div id="header" data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="header w-nav">
       <div class="nav_points">
         <div id="header_profileName" class="nav_point text_pre">ProfileName</div>
@@ -19,12 +26,7 @@
       <div id="menu_settings" class="nav_menu_div">
         <a routerLink="my-work" routerLinkActive="my-work" router class="h3sub text_inactive w-button">My Work</a>
       </div>
+
     </div>
-        <div class="container">
-          <td-ngx-text-diff class="editor-area" *ngIf="state"
-        [left]="left"
-        [right]="right"
-        (compareResults)="onCompareResults($event)"
-        ></td-ngx-text-diff>
-        <button id="submit" type="submit" >Accept review</button>
-      </div>
+        
+  

@@ -17,13 +17,14 @@ export class MyWorkComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.essays = await this.helloService.getAllEssay();
-    this.user = await this.helloService.getUsers();
-    console.log(this.user);
-    console.log(this.user[0].myEssays);
-    this.essays.forEach(essay => {
-      console.log(essay[1].title);
-    });
-    console.log(this.essays);
+    // this.user = await this.helloService.getUsers();
+    // console.log(this.user);
+    // console.log(this.user[0].myEssays);
+    // this.essays.forEach(essay => {
+    //   console.log(essay[1].title);
+    // });
+    // this.essays = await this.helloService.getEssay(1);
+    // console.log(this.essays);
   }
   changeRouteSkyboard(){
     this.router.navigate(['../skyboard'], { relativeTo: this.route });
