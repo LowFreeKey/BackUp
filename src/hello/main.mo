@@ -302,4 +302,90 @@ actor main {
         dbase_essays := Map.fromIter<Nat, EssayEntry>(upgradeCanistersEssays.vals(), 10, Nat.equal, Hash.hash);
         upgradeCanistersEssays := [];
     };
+    
+    public shared(msg) func getEssaysFromUser() : async [EssayEntry]{
+
+        var user  = dbase_profiles.get(msg.caller);
+        var essays : [EssayEntry] = [];
+        switch (user) {
+            case (null) {
+                return [];
+            };
+            case (?user) {
+                for(x in user.myEssays.vals())
+                 {
+                    var resultArray = Array.append(essays,[dbase_essays.get(x)]);
+                 };
+                 return essays;
+            };
+        };
+    };
+    public shared(msg) func deleteEssay( essayId:Nat) : () {
+
+        var user = dbase_profiles.get(msg.caller);
+        var updatedArray : [Nat] = [];
+
+        switch (user) {
+            case (null) 
+            {
+
+            };
+            case (?user) 
+            {
+                for(v in user.myEssays.vals())
+                {
+                    if(v == essayId){
+                    }
+                    else
+                    {
+                        updatedArray := Array.append(updatedArray,[v]);
+                    };
+                };
+                var updatedUser = {
+                    userName = user.userName;
+                    token  = user.token;
+                    userRating  = user.userRating;
+                    myEssays = updatedArray;
+                    reviewingEssay= user.reviewingEssay;
+                    pastRatedFeedbacks = user.pastRatedFeedbacks;
+                };
+                var replaced = dbase_profiles.replace(msg.caller,updatedUser);
+                dbase_essays.delete(essayId);
+
+            };
+        };
+    };
+    
+    public func deleteAllEssays():(){
+        var emptyArray : [Nat] = [];
+            for((v,x) in dbase_profiles.entries())
+            {
+                var currentUserInLoop = dbase_profiles.get(v);
+                switch (currentUserInLoop) {
+                    case (null) {
+
+                    };
+                    case (?currentUserInLoop) {
+                        var updatedUser = {
+                        userName = currentUserInLoop.userName;
+                        token  = currentUserInLoop.token;
+                        userRating  = currentUserInLoop.userRating;
+                        myEssays = emptyArray;
+                        reviewingEssay= currentUserInLoop.reviewingEssay;
+                        pastRatedFeedbacks = currentUserInLoop.pastRatedFeedbacks;
+                    };
+
+                        var replaced = dbase_profiles.replace(v,updatedUser);
+                    };
+                };
+
+            };
+            for((v,x) in dbase_essays.entries())
+            {
+                 dbase_essays.delete(v);
+            };
+
+    };
+    
+    
 }
