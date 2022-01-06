@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DiffContent, DiffResults } from 'ngx-text-diff/lib/ngx-text-diff.model';
+import { DiffResults } from '../../../../projects/ngx-text-diff/src/lib/ngx-text-diff.model';
 import { IcHelloService } from 'src/app/ic-hello.service';
 
 @Component({
