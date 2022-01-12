@@ -31,7 +31,9 @@ export class IcHelloService {
   public async getUserId(){
     return await ic_hello.whoami();
   }
-
+  public async getEssaysFromUser(){
+    return await ic_hello.getEssaysFromUser();
+  }
   public async AddReviewEssay(id:number){
     return await ic_hello.addReviewingEssay(id);
   }

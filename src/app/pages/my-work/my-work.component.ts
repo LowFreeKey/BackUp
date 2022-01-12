@@ -16,7 +16,8 @@ export class MyWorkComponent implements OnInit {
    }
 
   async ngOnInit(): Promise<void> {
-    this.essays = await this.helloService.getAllEssay();
+    this.essays = await this.helloService.getEssaysFromUser();
+    console.log(this.essays);
     // this.user = await this.helloService.getUsers();
     // console.log(this.user);
     // console.log(this.user[0].myEssays);
