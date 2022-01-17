@@ -98,7 +98,9 @@ actor main {
                     var replaced = dbase_profiles.replace(msg.caller,updatedUser);
                     paid := true;
                 }
-                else{
+                else{ //Need to add error statment + return to frontend. "Sorry you don't have enough tokens for that."
+                // Either provide feedback to others through The Forge or reduce your word count submission. 
+                
 
                 }
             };
@@ -116,7 +118,8 @@ actor main {
             pastRatedFeedbacks = user.pastRatedFeedbacks;
         }
     };
-
+            //We have to check for length of the essay selected and wether this meets the requirment. Example 1000 words -> 5 feedbacks minimum 
+            //Function, forEvery : for every time a user sucessfully gives a review ADD +200 words to limit of user. SO LONG AS user's average rating is above 7/10.
     public shared(msg) func addReviewingEssay(id:Nat) : async Bool {
         
         var user  = dbase_profiles.get(msg.caller);
