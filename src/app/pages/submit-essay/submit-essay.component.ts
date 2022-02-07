@@ -12,7 +12,7 @@ export class SubmitEssayComponent implements OnInit {
 
   constructor(private router:Router, private route: ActivatedRoute, private helloService: IcHelloService) { }
   public response:any;
-  public userId!:any;
+  public richText!:any;
   public EssayObj!:Essay;
   public essays!:any;
   public essay!:any;
@@ -25,6 +25,7 @@ export class SubmitEssayComponent implements OnInit {
       tokenToPay : 0,
       reviewTimes : 0,
     };
+    
   }
   changeRoute(): void{
     this.router.navigate(['../my-profile'], { relativeTo: this.route });
@@ -36,7 +37,6 @@ export class SubmitEssayComponent implements OnInit {
     this.router.navigate(['../skyboard'], { relativeTo: this.route });
     if (essayForm.valid) {      
       console.log(this.EssayObj);
-      this.userId = this.helloService.userId;
       this.response =  await this.helloService.createEssay(this.EssayObj);
       console.log(this.response);
       this.essays = await this.helloService.getAllEssay();

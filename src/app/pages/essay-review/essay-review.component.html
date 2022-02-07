@@ -24,7 +24,6 @@
     </div>
   </div>
 <div class="container">
-    <textarea class="editor-area" name="Text" [(ngModel)]="text">
-    </textarea>
+    <quill-editor class="editor-area" name="Text" [(ngModel)]="text"></quill-editor>
     <button id="submit" type="submit" (click)="submitEssay()">Submit</button>
 </div>

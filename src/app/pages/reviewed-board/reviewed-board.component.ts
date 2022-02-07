@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DiffResults } from '../../../../projects/ngx-text-diff/src/lib/ngx-text-diff.model';
 import { IcHelloService } from 'src/app/ic-hello.service';
 
@@ -11,6 +11,10 @@ export class ReviewedBoardComponent implements OnInit {
   left!:string;
   right!:string;
   state:boolean = false;
+  // public myElement!: HTMLElement;
+  // public myElement!: HTMLElement;
+  @ViewChild("editorArea")
+  myElement!: ElementRef;
   
   public  rensponse!:any;
   constructor(private helloService:IcHelloService,) {
@@ -21,6 +25,7 @@ export class ReviewedBoardComponent implements OnInit {
     console.log(this.rensponse);
     this.left = this.rensponse[0].text;
     console.log(this.left);
+    this.myElement.nativeElement.innerHTML = this.left;
     this.rensponse = await this.helloService.getReviewedEssay(1);
     console.log(this.rensponse);
     this.right = this.rensponse;

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxTextDiffModule } from 'ngx-text-diff';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { QuillModule } from 'ngx-quill';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +31,7 @@ import { ReviewedBoardComponent } from './pages/reviewed-board/reviewed-board.co
   imports: [
     BrowserModule,
     FormsModule,
+    QuillModule,
     AppRoutingModule,
     ScrollingModule, 
     NgxTextDiffModule
