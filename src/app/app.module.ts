@@ -15,6 +15,8 @@ import { MyWorkComponent } from './pages/my-work/my-work.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { FormsModule } from '@angular/forms';
 import { ReviewedBoardComponent } from './pages/reviewed-board/reviewed-board.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { BodyComponent } from './shared/body/body.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ReviewedBoardComponent } from './pages/reviewed-board/reviewed-board.co
     MyProfileComponent,
     MyWorkComponent,
     HomePageComponent,
-    ReviewedBoardComponent
+    ReviewedBoardComponent,
+    HeaderComponent,
+    BodyComponent
   ],
   imports: [
     BrowserModule,

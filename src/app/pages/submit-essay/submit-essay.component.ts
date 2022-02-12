@@ -34,7 +34,7 @@ export class SubmitEssayComponent implements OnInit {
     this.router.navigate(['../skyboard'], { relativeTo: this.route });
   }
   async Submit(essayForm: { valid: any; }){
-    this.router.navigate(['../skyboard'], { relativeTo: this.route });
+    // this.router.navigate(['../skyboard'], { relativeTo: this.route });
     if (essayForm.valid) {      
       console.log(this.EssayObj);
       this.response =  await this.helloService.createEssay(this.EssayObj);
@@ -46,7 +46,14 @@ export class SubmitEssayComponent implements OnInit {
       
        } 
     else {
-            console.error('Stock form is in an invalid state');   
+            console.error('essay form is in an invalid state');
+            console.log(this.EssayObj);
+            this.response =  await this.helloService.createEssay(this.EssayObj);
+            console.log(this.response);
+            this.essays = await this.helloService.getAllEssay();
+            console.log(this.essays);
+            this.essay = await this.helloService.getEssay(4);
+            console.log(this.essay);   
      } 
    
   }
