@@ -37,8 +37,12 @@
             <div id="email-form" name="email-form" data-name="Email Form" class="title_form" id="essay-title"><textarea placeholder="2000 Modern Social Theory" maxlength="5000" id="title_field" name="title_field"  #title_field="ngModel" [(ngModel)]="EssayObj.title" data-name="Title Field"  required class="title_textarea w-input"></textarea></div>
             <div *ngIf="title_field.errors && title_field.errors.required">             essay title is Mandatory    </div>
           </div>
+          <span class="ql-formats">
+            <div id="mat-quill-counter"></div>
+          </span>
           <div class="w-form" id="essay">
-            <div id="textfield_form" name="email-form" data-name="Email Form" class="form-2"><quill-editor maxlength="5000"  name="field" #field="ngModel" [(ngModel)]="EssayObj.text" data-name="Field"></quill-editor></div>
+            <div id="textfield_form" name="email-form" data-name="Email Form" class="form-2"><quill-editor maxlength="5000"  name="field" #field="ngModel" [(ngModel)]="EssayObj.text" data-name="Field" [modules]="{ counter: { container: '#mat-quill-counter', unit: 'word' } }"></quill-editor>
+            </div>
             <!-- <div *ngIf="field.errors && field.errors.required">   Essay is Mandatory    </div> -->
           </div>
         </div>

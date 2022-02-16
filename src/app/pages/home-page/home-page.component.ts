@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {AuthClient} from '@dfinity/auth-client';
+import { IcHelloService } from 'src/app/ic-hello.service';
 //@ts-ignore
 import { canisterId, createActor } from "../../../declarations/hello";
 
@@ -19,8 +20,9 @@ import { canisterId, createActor } from "../../../declarations/hello";
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+  users: any;
 
-  constructor(private router:Router, private route: ActivatedRoute) { }
+  constructor(private router:Router, private route: ActivatedRoute, private helloService:IcHelloService) { }
 
   ngOnInit(): void {
   }
@@ -31,22 +33,38 @@ export class HomePageComponent implements OnInit {
     const authClient = await AuthClient.create();
     if (await authClient.isAuthenticated()) {
       this.handleAuthenticated(authClient);
-      this.router.navigate(['../login'], { relativeTo: this.route });
+      this.users = await this.helloService.getUsers();
+      console.log(this.users);
+      if(this.users[0].userName){
+        this.router.navigate(['../submit-essay'], { relativeTo: this.route });
+      }
+      else{
+          this.router.navigate(['../login'], { relativeTo: this.route });
+      }
+    
     }
-    // else{
+    else{
+      const authClient = await AuthClient.create();
       await authClient.login({
         onSuccess: async () => {
           this.handleAuthenticated(authClient);
-          this.router.navigate(['../login'], { relativeTo: this.route });
+          this.users = await this.helloService.getUsers();
+          console.log(this.users);
+          if(this.users[0].userName){
+            this.router.navigate(['../submit-essay'], { relativeTo: this.route });
+          }
+          else{
+              this.router.navigate(['../login'], { relativeTo: this.route });
+          }
         },
         identityProvider:
           process.env.DFX_NETWORK === "ic"
-            ? "https://identity.ic0.app/#authorize"
+            ? "http://localhost:8000/?canisterId=rwlgt-iiaaa-aaaaa-aaaaa-cai"
             : process.env.LOCAL_II_CANISTER,
         // Maximum authorization expiration is 8 days
         maxTimeToLive: days * hours * nanoseconds,
       });
-    // }
+    }
     
     
   }

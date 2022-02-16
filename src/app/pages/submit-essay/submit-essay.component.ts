@@ -34,7 +34,7 @@ export class SubmitEssayComponent implements OnInit {
     this.router.navigate(['../skyboard'], { relativeTo: this.route });
   }
   async Submit(essayForm: { valid: any; }){
-    // this.router.navigate(['../skyboard'], { relativeTo: this.route });
+    this.router.navigate(['../skyboard'], { relativeTo: this.route });
     if (essayForm.valid) {      
       console.log(this.EssayObj);
       this.response =  await this.helloService.createEssay(this.EssayObj);
@@ -64,6 +64,7 @@ export class SubmitEssayComponent implements OnInit {
     this.router.navigate(['../my-work'], { relativeTo: this.route });
   }
   
+ 
  
 
   
