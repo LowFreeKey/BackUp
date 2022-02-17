@@ -7,7 +7,7 @@ const ic_hello = require('src/declarations/hello').hello;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss','../webflow-shit-storm.scss']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 

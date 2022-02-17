@@ -1,6 +1,37 @@
-.container{
-    margin-top: 5vh;
+.card{
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%; right: 50%;
+    transform: translate(50%,-50%);
+    background-color: white;
+    height: 50vh;
+    width: 50vw;
+    padding-top: 12vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    border-radius: 2vw;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.form{
+    display: flex;
+    flex-direction: column;
 }
 .label{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 5vh;
+}
+.username{
+    height: 5vh;
+    border:none;
+    background-color: #ececec;
+    border-radius: 5px;
+    margin-top: 2vh;
+    text-align: center;
+}
+.submit-button{
+    height: 5vh;
+    border:none;
+    background-color: #ff9115;
+    border-radius: 5px;
+    margin-top: 2vh;
 }
