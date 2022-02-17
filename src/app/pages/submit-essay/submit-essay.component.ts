@@ -9,6 +9,7 @@ import { Essay } from 'src/app/interface/essay';
   styleUrls: ['./submit-essay.component.scss']
 })
 export class SubmitEssayComponent implements OnInit {
+  users: any;
 
   constructor(private router:Router, private route: ActivatedRoute, private helloService: IcHelloService) { }
   public response:any;
@@ -16,7 +17,7 @@ export class SubmitEssayComponent implements OnInit {
   public EssayObj!:Essay;
   public essays!:any;
   public essay!:any;
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.EssayObj = {
       title : '',
       topic : '',
@@ -25,8 +26,11 @@ export class SubmitEssayComponent implements OnInit {
       tokenToPay : 0,
       reviewTimes : 0,
     };
+    this.users = await this.helloService.getUsers();
+      console.log(this.users);
     
   }
+  
   changeRoute(): void{
     this.router.navigate(['../my-profile'], { relativeTo: this.route });
   }  

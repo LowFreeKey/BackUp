@@ -35,8 +35,13 @@ export class HomePageComponent implements OnInit {
       this.handleAuthenticated(authClient);
       this.users = await this.helloService.getUsers();
       console.log(this.users);
-      if(this.users[0].userName){
-        this.router.navigate(['../submit-essay'], { relativeTo: this.route });
+      if(this.users.length){
+        if(this.users[0].userName){
+          this.router.navigate(['../submit-essay'], { relativeTo: this.route });
+        }
+        else{
+          this.router.navigate(['../login'], { relativeTo: this.route });
+        }
       }
       else{
           this.router.navigate(['../login'], { relativeTo: this.route });
@@ -50,8 +55,13 @@ export class HomePageComponent implements OnInit {
           this.handleAuthenticated(authClient);
           this.users = await this.helloService.getUsers();
           console.log(this.users);
-          if(this.users[0].userName){
-            this.router.navigate(['../submit-essay'], { relativeTo: this.route });
+          if(this.users.length){
+            if(this.users[0].userName){
+              this.router.navigate(['../submit-essay'], { relativeTo: this.route });
+            }
+            else{
+              this.router.navigate(['../login'], { relativeTo: this.route });
+            }
           }
           else{
               this.router.navigate(['../login'], { relativeTo: this.route });

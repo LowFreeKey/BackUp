@@ -4,7 +4,7 @@
 
 <div id="header" data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="header w-nav">
   <div class="nav_points">
-    <div (click)="changeRoute()"  id="header_profileName" class="nav_point text_pre">ProfileName</div>
+    <div (click)="changeRoute()"  id="header_profileName" class="nav_point text_pre">{{this.user[0].userName}}</div>
   </div>
   <a id="profilepicture" href="#" class="link-block w-inline-block">
     <div id="profile_picture" class="profile"></div>

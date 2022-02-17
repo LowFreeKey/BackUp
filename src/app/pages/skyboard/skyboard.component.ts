@@ -14,12 +14,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SkyboardComponent implements OnInit {
   public essays!:Array<Array<Essay>>;
+  users: any;
   constructor(private helloService: IcHelloService, private router:Router,private route:ActivatedRoute) {
     
    }
 
   async ngOnInit(): Promise<void> {
     this.essays = await this.helloService.getAllEssay();
+    this.users = await this.helloService.getUsers();
+      console.log(this.users);
     this.essays.forEach(essay => {
       console.log(essay[1].title);
     });
