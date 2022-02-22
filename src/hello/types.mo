@@ -1,3 +1,7 @@
+import Nat "mo:base/Nat";
+import Principal "mo:base/Principal";
+import Text "mo:base/Text";
+
 module {
   
   public type EssayCanister = Principal;
@@ -21,7 +25,7 @@ module {
     email : Text;
     essayCanister: EssayCanister;
     createdAt: Int;
-    token  : Nat;
+    token  : Int;
     userRating  : Nat;
     pastRatedFeedbacks : [Nat];
     updateCanister: Bool;
