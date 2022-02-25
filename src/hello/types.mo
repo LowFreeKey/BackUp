@@ -7,8 +7,6 @@ module {
   public type EssayCanister = Principal;
   public type UserId = Principal;
   public type UserName = Text;
-  //public type EssayHandler = Text; Testing does not exist in type Error. 
-
 
   public type CanisterSettings = {
       controllers : [Principal];
