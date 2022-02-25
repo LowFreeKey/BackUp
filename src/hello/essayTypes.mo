@@ -14,13 +14,15 @@ module {
             title : EssayTitle;
             topic : EssayTopic;
             createdAt : Int;
-            forgeVisits : Nat32;
-            tokenCost : Nat;
+            forgeVisits : Nat;
+            tokenCost : Int;
             text : Text;
         };
 
-    public type Annonciation = {
-        user : UserId;
-        comments : Text;
-    }
+    public type Annotation = {
+        essayOwner : UserId;
+        annotator : UserId;
+        annotions : Text;
+    };
+
 }
