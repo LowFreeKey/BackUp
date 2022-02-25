@@ -1,0 +1,24 @@
+type kawak = 
+ service {
+   createUser: (UserName__1, text) -> (opt EssayCanister);
+   forgeEssay: (EssayEntry, nat) -> (opt bool);
+   submittAnnotations: (principal, text, text) -> ();
+ };
+type UserName__1 = text;
+type UserName = text;
+type EssayTopic = text;
+type EssayTitle = text;
+type EssayId = text;
+type EssayEntry = 
+ record {
+   createdAt: int;
+   essayId: EssayId;
+   essayOwner: UserName;
+   forgeVisits: nat;
+   "text": text;
+   title: EssayTitle;
+   tokenCost: int;
+   topic: EssayTopic;
+ };
+type EssayCanister = principal;
+service : () -> kawak
