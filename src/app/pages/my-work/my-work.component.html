@@ -1,42 +1,4 @@
-<body class="body-6">
-
-  <div class="background_white"></div>
-
-<div id="header" data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="header w-nav">
-  <div class="nav_points">
-    <div (click)="changeRoute()"  id="header_profileName" class="nav_point text_pre">{{this.user[0].userName}}</div>
-  </div>
-  <a id="profilepicture" href="#" class="link-block w-inline-block">
-    <div id="profile_picture" class="profile"></div>
-  </a>
-</div>
-<div id="header" data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="grey w-nav"></div>
-<div data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
-  <div id="menu_skyboard" (click)="changeRouteSkyboard()" class="nav_menu_div active">
-    <a  class="h3sub text_inactive w-button">Skyboard</a>
-  </div>
-  <div id="menu_submit" class="nav_menu_div">
-    <a (click)="changeRouteSubmit()" class="h3sub text_inactive w-button">Submit</a>
-    <link rel="prerender" href="/essaysubmit">
-  </div>
-  <!-- <div id="menu_settings" class="nav_menu_div">
-    <a class="h3sub text_inactive w-button">Review</a>
-    <link rel="prerender" href="/essayreview">
-  </div> -->
-  <div id="menu_settings" class="nav_menu_div">
-    <a (click)="changeRouteMyWork()" class="h3sub text_active w-button">My Work</a>
-  </div>
-</div>
-
-<div class="body_container w-container">
-  <div class="main_block_boards" >
-    <div id="list_box" class="board_view"(click)="changeRouteReviewBoard(essay)"   *ngFor="let essay of essays; index as i;">
-      <div id="board_tile" class="style_text h3">{{essay[1].title}}</div>
-      <div id="board_attr" class="attributes">
-        <div class="text_pre">{{essay[1].tokenToPay + " Tokens" }}</div>
-        <div class="text_pre">{{essay[1].wordCount + " Words"}}</div>
-      </div>
-      <div class="text_small">{{essay[1].topic}}</div>
-    </div>
-  </div>
-</div>
+<app-header></app-header>
+<app-body>
+    <app-essay></app-essay>
+</app-body>

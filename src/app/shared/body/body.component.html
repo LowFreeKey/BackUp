@@ -1,6 +1,10 @@
 <div class="card">
-    <a href="" class="nav-items">Skyboard</a>
-    <a href="" class="nav-items">Submit</a>
-    <a href="" class="nav-items">Mywork</a>
+    <div class="links">
+        <a (click)= "changeRouteSkyboard()" class="nav-items">Forge</a>
+        <a (click)= "changeRouteSubmitEssay()" class="nav-items">Submit</a>
+        <a (click)= "changeRouteMyWork()" class="nav-items">My work</a>
+    </div>
+    <div class="content">
+        <ng-content></ng-content>
+    </div>
 </div>
-

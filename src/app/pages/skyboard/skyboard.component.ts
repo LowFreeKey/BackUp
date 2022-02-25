@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-skyboard',
   templateUrl: './skyboard.component.html',
-  styleUrls: ['./skyboard.component.scss']
+  styleUrls: ['./skyboard.component.scss','../webflow-shit-storm.scss']
 })
 export class SkyboardComponent implements OnInit {
   public essays!:Array<Array<Essay>>;

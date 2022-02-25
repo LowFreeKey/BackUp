@@ -1,92 +1,37 @@
-<div class="body-6">
-<div class="background_white"></div>
-
-<div id="header" data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="header w-nav">
-  <div class="nav_points">
-    <div id="header_profileName" class="nav_point text_pre">{{this.users[0].userName}}</div>
-  </div>
-  <a id="profilepicture" href="#" class="link-block w-inline-block">
-    <div id="profile_picture" class="profile"></div>
-  </a>
-</div>
-
-<div id="header" data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="grey w-nav"></div>
-
-  <div data-animation="default" data-collapse="all" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
-    <div id="menu_skyboard" class="nav_menu_div active">
-      <a (click)=changeRouteSkyboard() class="h3sub text_inactive w-button">Skyboard</a>
+<app-header></app-header>
+<app-body>
+  <form action=""  (ngSubmit)="Submit(essayForm)" #essayForm="ngForm">
+    <div container="wrapper">
+        <textarea placeholder="2000 SOCIAL THEORY" class="heading"  name="title_field"  #title_field="ngModel" [(ngModel)]="EssayObj.title" ></textarea>
+        <quill-editor maxlength="5000" class="body"  name="field" #field="ngModel" [(ngModel)]="EssayObj.text" data-name="Field"  format="object"
+        [modules]="{ counter: { container: '#mat-quill-counter', unit: 'word' } }"></quill-editor>
     </div>
-    <div id="menu_submit" class="nav_menu_div">
-      <a type="submit" class="h3sub text_active w-button">Submit</a>
-    </div>
-    <!-- <div id="menu_settings" class="nav_menu_div">
-      <a (click)=changeRouteEssayReview() class="h3sub text_inactive w-button">Review</a>
-    </div> -->
-    <div id="menu_settings" class="nav_menu_div">
-      <a (click)=changeRouteMyWork() class="h3sub text_inactive w-button">My Work</a>
-    </div>
-  </div>
-
- 
-
-  <form class="body_container w-container" (ngSubmit)="Submit(essayForm)" #essayForm="ngForm">
-    <div class="main_block_boards">
-      <div id="main_body" class="body2">
-        <div id="main_block" class="textedit">
-          <div class="title h3 w-form">
-            <div id="email-form" name="email-form" data-name="Email Form" class="title_form" id="essay-title"><textarea placeholder="2000 Modern Social Theory" maxlength="5000" id="title_field" name="title_field"  #title_field="ngModel" [(ngModel)]="EssayObj.title" data-name="Title Field"  required class="title_textarea w-input"></textarea></div>
-            <div *ngIf="title_field.errors && title_field.errors.required">             essay title is Mandatory    </div>
-          </div>
-          <span class="ql-formats">
-            <div id="mat-quill-counter"></div>
-          </span>
-          <div class="w-form" id="essay">
-            <div id="textfield_form" name="email-form" data-name="Email Form" class="form-2"><quill-editor maxlength="5000"  name="field" #field="ngModel" [(ngModel)]="EssayObj.text" data-name="Field" [modules]="{ counter: { container: '#mat-quill-counter', unit: 'word' } }"></quill-editor>
-            </div>
-            <!-- <div *ngIf="field.errors && field.errors.required">   Essay is Mandatory    </div> -->
-          </div>
-        </div>
+    <div class="tool-bar">
+      <div class="nav">
+          <div class="tool-bar-nav"></div>
+          <div class="tool-bar-nav"></div>
+          <div class="tool-bar-nav"></div>
       </div>
-    </div>
-    <div id="side_block" class="side_block">
-      <div data-current="submit_settings" data-easing="ease-in-expo" data-duration-in="20" data-duration-out="10" class="tabs w-tabs">
-        <div class="w-tab-menu">
-          <a data-w-tab="submit_settings" class="tab_side w-inline-block w-tab-link w--current">
-            <div class="tab_side_1"><img loading="lazy" src="../../../assets/images/carbon_settings-adjust.svg" alt="" class="image-2"></div>
-          </a>
-          <a data-w-tab="upload" class="tab_side w-inline-block w-tab-link">
-            <div class="tab_side_1"><img loading="lazy" src="../../../assets/images/ant-design_upload-outlined.svg" alt=""></div>
-          </a>
-          <a data-w-tab="download" class="tab_side w-inline-block w-tab-link">
-            <div class="tab_side_1"><img loading="lazy" src="../../../assets/images/download.svg" alt="" class="image-5"></div>
-          </a>
-        </div>
-        <div class="tabs-content w-tab-content">
-          <div data-w-tab="submit_settings" class="sidetab_block w-tab-pane w--tab-active">
-            <div class="sidetab_essay_settings">
-              <div class="w-form">
-                <div id="wf-form-essay_inputs" name="wf-form-essay_inputs" data-name="essay_inputs" class="form">
-                  <div class="form_div" ><label for="wordcount" class="text_pre">Word Count</label><input type="number" class="form_input w-input" id="word-count" maxlength="256" name="wordcount" #wordcount="ngModel" [(ngModel)]="EssayObj.wordCount" data-name="Wordcount" placeholder=""  required></div>
-                  <div class="form_div"><label for="topic" class="text_pre" >Topic</label><input type="text" class="form_input w-input" maxlength="256" id="topic" name="topic" #topic="ngModel" data-name="Topic" [(ngModel)]="EssayObj.topic" placeholder="Philosophy, Law, Art, ..." required></div>
-                  <div class="form_div" ><label for="reviewtimes" class="text_pre">Review Times</label><input type="number" class="form_input w-input" id="review-times" maxlength="256" name="reviewtimes" #reviewtimes="ngModel" [(ngModel)]="EssayObj.reviewTimes" data-name="Reviewtimes" placeholder="times reviewed by " required></div>
-                  <div id="token-spend" class="form_div" ><label for="token" class="text_pre" >Token </label><input type="number" class="form_input w-input" id="token" maxlength="256" name="token" #token="ngModel" [(ngModel)]="EssayObj.tokenToPay" data-name="Token" placeholder=""  required></div>
-                  <button type="submit"  class="btn_submit w-button">Submit</button>
-                </div>
-                <div *ngIf="topic.errors && topic.errors.required">       field invalid    </div>
-              </div>
-            </div>
-          </div>
-          <div data-w-tab="upload" class="sidetab_block w-tab-pane">
-            <div class="div-block-8"></div>
-          </div>
-          <div data-w-tab="download" class="sidetab_block w-tab-pane"></div>
-        </div>
-      </div>
-    </div>
-  </form> 
-</div>
+      <div class="tool-bar-body">
+          <div class="tool-bar-form">
+              <label for="wordcount">Word Count</label>
+              <input name="wordcount" #wordcount="ngModel" [(ngModel)]="EssayObj.wordCount" type="number" class="formFields" >
+              
+              <label for="topic"> Topic </label>
+              <input name="topic"  name="topic" #topic="ngModel" data-name="Topic" [(ngModel)]="EssayObj.topic" placeholder="Philosophy, Law, Art, ..." type="text" class="formFields">
+              
+              <label for="review-time"> Review time </label>
+              <input name="review-time" name="reviewtimes" #reviewtimes="ngModel" [(ngModel)]="EssayObj.reviewTimes" data-name="Reviewtimes" placeholder="times reviewed by " type="number" class="formFields">
   
- 
-
-
+                
+              <label for="token"> Token </label>
+              <input name="token" #token="ngModel" [(ngModel)]="EssayObj.tokenToPay" type="number" class="formFields">
+  
+              <input type="submit" class="submit" >
+          </div>
+  
+      </div>
+    </div>
+  </form>
+</app-body>
 

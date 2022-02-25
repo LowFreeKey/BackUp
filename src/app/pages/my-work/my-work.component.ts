@@ -6,7 +6,7 @@ import { Essay } from 'src/app/interface/essay';
 @Component({
   selector: 'app-my-work',
   templateUrl: './my-work.component.html',
-  styleUrls: ['./my-work.component.scss']
+  styleUrls: ['./my-work.component.scss','../webflow-shit-storm.scss']
 })
 export class MyWorkComponent implements OnInit {
   public essays!:Array<Array<Essay>>;

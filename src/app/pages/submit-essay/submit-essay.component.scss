@@ -1,25 +1,62 @@
-.textarea{
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 16px;
+.wrapper{
+    display: flex;
 }
-
-#word-count .ng-valid, 
-#topic .ng-valid, 
-#review-times .ng-valid,
-#title_field .ng-valid, 
-#field .ng-valid, 
-#token .ng-valid {  
-    background-color: green; 
+.heading{
+    margin-left: 5vw;
+    display: block;
+    width: 55vw;
+    height: 8vh;
+    font-size: 5vh;
+}
+.body{
+    margin-left: 5vw;
+    display: block;
+    width: 55.4vw;
+    height: 60vh;
+}
+.tool-bar{
+    position: fixed;
+    top: 14%; right:-8%;
+    background-color: #f7f7f7;
+    height: 100vh;
+    width: 40vh;
+    text-align: start;
 }
 .nav{
-    margin-right: none;
+    display: flex;
 }
-#word-count .ng-invalid, 
-#topic .ng-invalid, 
-#review-times .ng-invalid,
-#title_field .ng-invalid, 
-#field .ng-invalid, 
-#token .ng-invalid { 
-    background-color: red; 
+.tool-bar-nav{
+    flex: 1;
+    height: 10vh;
+    background-color: #ff9115;
+    margin-bottom: 2vh;
 }
-
+.tool-bar-body{
+    display: block;
+}
+.submit{
+    display: block;
+}
+.tool-bar-form{
+    padding: 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.formFields{
+    margin-bottom: 2vh;
+    flex-basis: 4vh;
+    border: none;
+}
+.submit{
+    width:12vw;
+    border: none;
+    height: 8vh;
+    color: #ffffff;
+    background-color: #ff9115;
+}
+label{
+    margin-bottom: 1vh;
+    font-size: 1.6vh;
+    font-weight:bold;
+}

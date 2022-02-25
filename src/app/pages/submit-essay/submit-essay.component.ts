@@ -6,7 +6,7 @@ import { Essay } from 'src/app/interface/essay';
 @Component({
   selector: 'app-submit-essay',
   templateUrl: './submit-essay.component.html',
-  styleUrls: ['./submit-essay.component.scss','../webflow-shit-storm.scss']
+  styleUrls: ['./submit-essay.component.scss',]
 })
 export class SubmitEssayComponent implements OnInit {
   users: any;

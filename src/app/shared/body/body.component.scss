@@ -13,11 +13,28 @@
     border-radius: 2vw;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.links{
     display: flex;
-    justify-content: space-around;
-    font-size: 2vw;
+    justify-content: left;
+    margin-bottom: 5vw;
 }
 .nav-items{
+    font-size: 1.6vw;
+    font-weight: 500;
     text-decoration: none;
     color:rgb(77, 77, 77);;
+    margin-right: 5vw;
+}
+.nav-items:hover{
+    cursor: pointer;
+}
+.content{
+    margin-left: 4px;
+    margin-right: 4px;
+    width: 80vw;
+    height: 66vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align:justify;
 }
