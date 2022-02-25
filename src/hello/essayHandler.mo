@@ -1,7 +1,7 @@
 import FileTypes "essayTypes";
 import Time "mo:base/Time";
 import Text "mo:base/Text";
-import Cycles "mo:base/ExperimentalCycles";
+//import Cycles "mo:base/ExperimentalCycles";
 import Principal "mo:base/Principal";
 import EssayTypes "essayTypes";
 import Array "mo:base/Array";
@@ -9,6 +9,7 @@ import Bool "mo:base/Bool";
 import Debug "mo:base/Debug";
 import Int "mo:base/Int";
 import Iter "mo:base/Iter";
+import Option "mo:base/Option";
 import Nat "mo:base/Nat";
 import Types "types";
 import HashMap "mo:base/HashMap";
@@ -27,7 +28,7 @@ shared (msg) actor class EssayHandler (){
 
     stable var ownEssays : [(EssayId,EssayEntry)] = [];
 
-    var ownerEssays = HashMap<EssayId,EssayEntry>(0,Text.equal,Text.hash);
+    var ownerEssays = HashMap.HashMap<EssayId,EssayEntry>(0,Text.equal,Text.hash);
     var forgedEssays : [EssayEntry] = [];
 
     public query(msg) func getCanisterID() : async Principal{
@@ -47,25 +48,25 @@ shared (msg) actor class EssayHandler (){
 
     func createOne(user : UserName, title : EssayTitle, text : Text):Bool{
         let id : EssayId = title # "-" # (Int.toText(Time.now()) # "-" # user);
-        switch(id)
+        switch(ownerEssays.get(id))
             {
                 case (?_){
                     return false;  
                 };
                 case null{
-                    ownerEssays.put(id,makeEssay(user,title,text,id,0,"",null));
+                    ownerEssays.put(id,makeEssay(user,title,"",Time.now(),0,text,id,0));
                     return true; 
                 }
             };
     };
 
-      func makeEssay(user : UserName, givenTitle : EssayTitle, givenText : Text, givenEssayId : Text, forgeVisits:Nat,topic:EssayTopic,essayCost:Nat): EssayEntry {
+      func makeEssay(user : UserName, givenTitle : EssayTitle,topic:EssayTopic,createdAt:Int, forgeVisits:Nat, givenText : Text, givenEssayId : Text,essayCost:Int): EssayEntry {
         {
             essayOwner = user;
             essayId = givenEssayId;
             title = givenTitle;
             topic = topic;
-            createdAt = Time.now();
+            createdAt = createdAt;
             forgeVisits = forgeVisits;
             tokenCost = essayCost;
             text = givenText;
@@ -87,14 +88,14 @@ shared (msg) actor class EssayHandler (){
         return ownerEssays.get(id);
     };
 
-    func minCost(essayLength : Nat):Nat{
+    
 
-    };
-
-    public shared(msg) func moldEssay(id:EssayId,title:EssayTitle,topic: EssayTopic,forgeVisits : Nat,essayLength : Nat): async EssayEntry{
-        var cost = minCost(essayLength);
-        var forgingEssay = ownerEssays.get(id);
-        ownerEssays.put(id,makeEssay(forgingEssay.essayOwner,id,title,topic,forgingEssay.createdAt,forgeVisits,cost,forgingEssay.text));
+    public shared(msg) func moldEssay(id:EssayId,title:EssayTitle,topic: EssayTopic,forgeVisits : Nat,essayLength : Nat,cost :Int): async ?(){
+        
+        do?{
+        let forgingEssay = ownerEssays.get(id)!;
+        ownerEssays.put(id,makeEssay(forgingEssay.essayOwner,title,topic,forgingEssay.createdAt,forgeVisits,forgingEssay.text,forgingEssay.essayId,cost));
+        }
         //now it should go into the forgeHandler map
     };
 
